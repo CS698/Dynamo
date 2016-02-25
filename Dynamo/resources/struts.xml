@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="Struts2Beginner" extends="struts-default">
+
+
+		<action name="login" class="net.dynamo.action.LoginAction"
+			method="execute">
+			<result name="success">/Welcome.jsp</result>
+			<result name="input">/Login.jsp</result>
+			<result name="add">/AddProfile.jsp</result>
+			<result name="view">/ViewProfile.jsp</result>
+		</action>
+		<action name="">
+			<result>/Login.jsp</result>
+		</action>
+
+		
+		
+		
+		
+		
+	</package>
+</struts>
