@@ -7,6 +7,6 @@
 <title>DYNAMO</title>
 </head>
 <body>
-<h1>WELCOME</h1>
+<h1>WELCOME TEAM</h1>
 </body>
 </html>
