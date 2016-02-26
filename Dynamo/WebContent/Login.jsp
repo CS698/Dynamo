@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-<title>DYNAMO</title>
+<title>DYNAMO Project</title>
 </head>
  
 <body>
