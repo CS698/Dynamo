@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>DYNAMO</title>
+<title>DYNAMO Project</title>
 </head>
 <body>
 <h1>WELCOME TEAM</h1>
