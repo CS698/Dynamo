@@ -146,7 +146,7 @@ public class LoginAction {
 
 		}
 
-		if (validationLst.get(2).equals("admin")) {
+		if (validationLst.get(2).equals("commnader")) {
 			System.out.println("I am admin");
 
 			int memberId = Integer.parseInt((String) validationLst.get(0));

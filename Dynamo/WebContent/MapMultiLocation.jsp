@@ -13,11 +13,11 @@
 
   <script type="text/javascript">
     var locations = [
-      ['Bondi Beach', -33.890542, 151.274856, 4],
-      ['Coogee Beach', -33.923036, 151.259052, 5],
-      ['Cronulla Beach', -34.028249, 151.157507, 3],
-      ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-      ['Maroubra Beach.', -33.950198, 151.259302, 1]
+      ['Ramya', -33.890542, 151.274856, 4,'Fire','7324566543'],
+      ['Maurani', -33.923036, 151.259052, 5,'Flood','1324566543'],
+      ['Srinadh', -34.028249, 151.157507, 3,'Fire','2324566543'],
+      ['Sindhu', -33.80010128657071, 151.28747820854187, 2,'Police','3324566543'],
+      ['Unnati', -33.950198, 151.259302, 1,'EarthQuake','4324566543']
     ];
 
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -29,16 +29,19 @@
     var infowindow = new google.maps.InfoWindow();
 
     var marker, i;
-
+    var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
     for (i = 0; i < locations.length; i++) {  
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map
+        map: map,
+        icon : image
       });
 
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
-          infowindow.setContent(locations[i][0]);
+          infowindow.setContent('Name : ' +locations[i][0] + '</br>' +'Skill : ' 
+        		  +locations[i][4] + '</br>'+ 'Phone no :'+locations[i][5]+
+        		  '</br>'+'<img src="/Dynamo/images/icon.jpg"/>');
           infowindow.open(map, marker);
         }
       })(marker, i));
