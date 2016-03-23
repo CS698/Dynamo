@@ -15,15 +15,20 @@
 <s:iterator value="profileViewLst">  
   
 Name :<s:property value="name"/><br/>  
-Address :<s:property value="address"/><br/>  
-Phone Number :<s:property value="phone"/><br/>  
-
-Country Code :<s:property value="name"/><br/>
-Email Address :<s:property value="email"/><br/>
-
-Date of Birth:<s:property value="name"/><br/>    
  
-</s:iterator>  
+Phone Number :<s:property value="phone"/><br/>  
+Address :<s:property value="address"/><br/> 
 
+Email Address :<s:property value="email"/><br/>
+  
+ 
+ 
+<s:url value="addForm" var="url">
+   <s:param name="member_id" value="%{member_id}" /> 
+</s:url>
+<s:a href="%{url}">
+    Add Member
+</s:a>
+</s:iterator> 
 </body>
 </html>

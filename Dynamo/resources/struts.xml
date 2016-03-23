@@ -4,6 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
+<constant name="struts.multipart.saveDir" value="/Dynamo/images" />
 	<package name="Struts2Beginner" extends="struts-default">
 
 
@@ -18,10 +19,29 @@
 			<result>/Login.jsp</result>
 		</action>
 
+		<action name="addForm" class="net.dynamo.action.LoginAction"
+			method="addForm">
+			<result name="add">/AddProfile.jsp</result>
+
+
+		</action>
+
+		<action name="add" class="net.dynamo.action.LoginAction"
+			method="add">
+
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">2097152</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/pjpeg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="view">/Welcome.jsp</result>
+			<result name="registered">/SuccessRegistration.jsp</result>
+		</action>
 		
-		
-		
-		
-		
+
+
+
 	</package>
 </struts>

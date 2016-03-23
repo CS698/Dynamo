@@ -23,6 +23,5 @@ public interface DBobjectDAO {
 		//	String dOB, String role, String member_id, String member_id2) throws ParseException;
 	public abstract List listMembers(String member_id);
 	public abstract int deleteMember(String member_id);
-	public abstract int add(String name, String address, String phone, String countryCode, String email, String DOB, String role,
-			 String login_id, String password, String hint_question, String hint_answer,String member_id);
+	public abstract int add(String name, String address,String destPath, String skill, String info,String zipcode,String phone,String member_id);
 }

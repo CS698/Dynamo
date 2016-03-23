@@ -8,14 +8,24 @@ handle all the User action like
 */
 package net.dynamo.action;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.ServletRequestAware;
+
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
 
 import net.dynamo.Dao.DBobjectDAO;
 import net.dynamo.Dao.DBobjectDAOImp;
 import net.dynamo.VO.User;
 
-public class LoginAction {
+public class LoginAction extends ActionSupport implements ServletRequestAware {
 	private String username;
 	private String password;
 	private DBobjectDAO DBobjectDAO;
@@ -30,65 +40,32 @@ public class LoginAction {
 	private String role;
 	private String status;
 	private String countryCode;
-	private String hintQuestion;
-	private String hintAnswer;
+	private String zipcode;
+
+	// private String hintQuestion;
+	// private String hintAnswer;
 	private String lpassword;
 	private String login;
 
-	public String getLogin() {
-		return login;
+	//
+	/* Dynamo Image upload */
+	private File userImage;
+	private String destPath;
+	private String skill;
+	private String info;
+
+	private String userImageContentType;
+	private String userImageFileName;
+
+	private HttpServletRequest servletRequest;
+	//////////////////////////////////////
+	HttpSession session;
+	public HttpSession getSession() {
+		return session;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getHintQuestion() {
-		return hintQuestion;
-	}
-
-	public void setHintQuestion(String hintQuestion) {
-		this.hintQuestion = hintQuestion;
-	}
-
-	public String getHintAnswer() {
-		return hintAnswer;
-	}
-
-	public void setHintAnswer(String hintAnswer) {
-		this.hintAnswer = hintAnswer;
-	}
-
-	public String getLpassword() {
-		return lpassword;
-	}
-
-	public void setLpassword(String lpassword) {
-		this.lpassword = lpassword;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getMember_id() {
-		return member_id;
-	}
-
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
+	public void setSession(HttpSession session) {
+		this.session = session;
 	}
 
 	List validationLst = new ArrayList();
@@ -121,16 +98,16 @@ public class LoginAction {
 		this.profileViewLst = profileViewLst;
 	}
 
-	
-	 /**
-	   * This is the main method is Validating the user and 
-	   * direct to welcome page
-	   * @param args Unused.
-	   * @author Maurani Saha
-	   * @return Nothing.
-	   * @exception Exception.
-	   *
-	   */
+	/**
+	 * This is the main method is Validating the user and direct to welcome page
+	 * 
+	 * @param args
+	 *            Unused.
+	 * @author Maurani Saha
+	 * @return Nothing.
+	 * @exception Exception.
+	 *
+	 */
 	
 	public String execute() throws Exception {
 		String password = this.password;
@@ -175,6 +152,10 @@ public class LoginAction {
 		System.out.println("ViewprofileViewLst:--------------" + ViewprofileViewLst);
 		ViewprofileViewLst = DBobjectDAO.viewProfile(memberId);
 
+		 session = servletRequest.getSession();
+		session.setAttribute("memberIdSession", memberId+"");
+		String memberIdSession=(String) session.getAttribute("memberIdSession");
+		System.out.println("memberIdSession:"+memberIdSession);
 		System.out.println("ViewprofileViewLst:" + ViewprofileViewLst);
 		return ViewprofileViewLst;
 	}
@@ -262,7 +243,7 @@ public class LoginAction {
 
 	public String addForm() throws Exception {
 
-		System.out.println("ADDDDD::::::::::::::::::::::::" + member_id);
+		System.out.println("ADDDDD:member_id:::::::::::::::::::::::" + member_id);
 
 		return "add";
 
@@ -276,12 +257,47 @@ public class LoginAction {
 
 		name = this.name;
 		address = this.address;
+		destPath=this.destPath;
 		phone = this.phone;
-		zip = this.zip;
+		zipcode = this.zipcode;
 		email = this.email;
-		System.out.println("lpassword->>>>>>>>>>>>>" + lpassword);
-		int memberID = DBobjectDAO.add(name, address, phone, countryCode, email, DOB, role, login, lpassword,
-				hintQuestion, hintAnswer, member_id);
+		skill=this.skill;
+		info=this.info;
+		System.out.println("lpassword->>>>>>>>>>>INSIDE ADD LOGIN ACTION>>");
+		
+		
+		
+		System.out.println("name::::::::"+name);
+		System.out.println("address::::::::"+address);
+		System.out.println("destPath::::::::"+destPath);
+		System.out.println("skill::::::::"+skill);
+		System.out.println("info::::::::"+info);
+		session = servletRequest.getSession();
+		String a=(String) session.getAttribute("memberIdSession");
+		System.out.println("aaaaaaaaaaaaaa:"+a);
+
+		/*
+		 * String contextPath = servletRequest.getContextPath();
+		 * 
+		 * System.out.println("path::"+contextPath); destPath =
+		 * contextPath+"/images/"; System.out.println("Src File name: " +
+		 * userImage); System.out.println("Dst File name: " +
+		 * userImageFileName); System.out.println(" destPath: " + destPath);
+		 * 
+		 * File destFile = new File(destPath, userImageFileName);
+		 * FileUtils.copyFile(userImage, destFile);
+		 */
+		destPath = servletRequest.getServletContext().getRealPath("/");
+
+		
+		destPath="/images";
+		
+		System.out.println("Server path:" + destPath);
+		File fileToCreate = new File(destPath, this.userImageFileName);
+
+		FileUtils.copyFile(this.userImage, fileToCreate);
+		System.out.println("member_id::" + member_id);
+		int memberID = DBobjectDAO.add(name, address, destPath, skill, info, zipcode, phone, member_id);
 		profileViewLst = viewProfile(memberID);
 		System.out.println("memberID::loginaction---" + memberID);
 		if (memberID == 0) {
@@ -289,6 +305,22 @@ public class LoginAction {
 		} else
 			return "view";
 
+	}
+
+	public String getSkill() {
+		return skill;
+	}
+
+	public void setSkill(String skill) {
+		this.skill = skill;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
 	}
 
 	public String listMembers() throws Exception {
@@ -385,4 +417,91 @@ public class LoginAction {
 		this.countryCode = countryCode;
 	}
 
+	public String getDestPath() {
+		return destPath;
+	}
+
+	public void setDestPath(String destPath) {
+		this.destPath = destPath;
+	}
+
+	public File getUserImage() {
+		return userImage;
+	}
+
+	public void setUserImage(File userImage) {
+		this.userImage = userImage;
+	}
+
+	public String getUserImageContentType() {
+		return userImageContentType;
+	}
+
+	public void setUserImageContentType(String userImageContentType) {
+		this.userImageContentType = userImageContentType;
+	}
+
+	public String getUserImageFileName() {
+		return userImageFileName;
+	}
+
+	public void setUserImageFileName(String userImageFileName) {
+		this.userImageFileName = userImageFileName;
+	}
+
+	public HttpServletRequest getServletRequest() {
+		return servletRequest;
+	}
+
+	public void setServletRequest(HttpServletRequest servletRequest) {
+		this.servletRequest = servletRequest;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getLpassword() {
+		return lpassword;
+	}
+
+	public void setLpassword(String lpassword) {
+		this.lpassword = lpassword;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
 }

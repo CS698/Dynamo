@@ -9,15 +9,13 @@
 <h2>DYNAMO</h2>
 <s:actionerror />
 <s:form action="login" method="post">
-    <s:textfield name="username" key="UserName" size="20" />
+    <s:textfield name="username" key="Login ID" size="20" />
     <s:password name="password" key="Password" size="20" />
     <s:submit method="execute" key="login" value="login" align="center" />
 </s:form>
 <s:url value="addForm" var="url">
    <s:param name="member_id" value="%{member_id}" /> 
 </s:url>
-<s:a href="%{url}">
-   Register New Member
-</s:a>
+
 </body>
 </html>

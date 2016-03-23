@@ -127,13 +127,11 @@ public class DBobjectDAOImp implements DBobjectDAO {
 				while (rs.next()) {
 					User user = new User();
 					user.setName((String) rs.getString(1));
-					user.setAddress((String) rs.getString(2));
-					user.setPhone((String) rs.getString(3));
+					
+					user.setPhone((String) rs.getString(2));
+					user.setAddress((String) rs.getString(3));
 					//user.setStatus((String) rs.getString(4));
-					user.setCountryCode((String) rs.getString(4));
-					user.setEmail((String) rs.getString(5));
-					//user.setEnrolled_date((String) rs.getString(7));
-					user.setDob((String) rs.getString(6));
+					user.setEmail((String) rs.getString(4));
 					user.setMember_id((String) rs.getString(7));
 
 					viewProfileList.add(user);
@@ -244,8 +242,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 
 	@Override
 	// Add a new user
-	public int add(String name, String address, String phone, String countryCode, String email,
-			 String DOB, String role, String login_id,String password,String hint_question,String hint_answer,String member_id) {
+	public int add(String name, String address,String destPath, String skill, String info,String zipcode,String phone,String member_id){
 		System.out.println("dao");
 		System.out.println("name:" + name);
 
@@ -267,23 +264,22 @@ public class DBobjectDAOImp implements DBobjectDAO {
 
 			// DataSource ds=MyDataSourceFactory.getMySQLDataSource();
 			con = ds.getConnection();
-			cs = con.prepareCall("{call add_user(?,?,?,?,?,?,?,?,?,?,?)}");
+			cs = con.prepareCall("{call add_user(?,?,?,?,?,?,?,?)}");
 
-			System.out.println("login_id::::::::"+login_id);
-			System.out.println("password::::::::"+password);
-			System.out.println("hint_question::::::::"+hint_question);
-			System.out.println("hint_answer::::::::"+hint_answer);
+			System.out.println("name::::::::"+name);
+			System.out.println("address::::::::"+address);
+			System.out.println("destPath::::::::"+destPath);
+			System.out.println("skill::::::::"+skill);
+			System.out.println("info::::::::"+info);
 			cs.setString(1, name);
 			cs.setString(2, address);
 			cs.setString(3, phone);
-			cs.setString(4, countryCode);
-			cs.setString(5, email);
-			cs.setString(6, DOB);
-			cs.setString(7, role);
-			cs.setString(8, login_id);
-			cs.setString(9, password);
-			cs.setString(10, hint_question);
-			cs.setString(11, hint_answer);
+			cs.setString(4, destPath);
+			cs.setString(5, skill);
+			cs.setString(6, info);
+			cs.setString(7, zipcode);
+			cs.setString(8, phone);
+			
 
 			boolean haveResult = cs.execute();
 			if (haveResult) {
