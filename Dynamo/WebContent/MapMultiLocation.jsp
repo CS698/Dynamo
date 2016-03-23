@@ -41,7 +41,7 @@
         return function() {
           infowindow.setContent('Name : ' +locations[i][0] + '</br>' +'Skill : ' 
         		  +locations[i][4] + '</br>'+ 'Phone no :'+locations[i][5]+
-        		  '</br>'+'<img src="/Dynamo/images/icon.jpg"/>');
+        		  '</br>'+'<img src="<%=request.getContextPath()%>/images/icon.jpg"/>');
           infowindow.open(map, marker);
         }
       })(marker, i));

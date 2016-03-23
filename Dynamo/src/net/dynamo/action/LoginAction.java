@@ -9,9 +9,12 @@ handle all the User action like
 package net.dynamo.action;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.io.FileUtils;
@@ -51,11 +54,34 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	/* Dynamo Image upload */
 	private File userImage;
 	private String destPath;
+	private String contextPath ;
+	public String getContextPath() {
+		return contextPath;
+	}
+
+	public void setContextPath(String contextPath) {
+		this.contextPath = contextPath;
+	}
+
 	private String skill;
 	private String info;
 
 	private String userImageContentType;
 	private String userImageFileName;
+	
+	
+	
+	File fileUpload;
+    public File getFileUpload() {
+		return fileUpload;
+	}
+
+	public void setFileUpload(File fileUpload) {
+		this.fileUpload = fileUpload;
+	}
+
+	String fileUploadContentType;
+    String fileUploadFileName;
 
 	private HttpServletRequest servletRequest;
 	//////////////////////////////////////
@@ -241,11 +267,22 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 	}
 
+	/* ***To navigate to the form to Add Responder********************************************/
 	public String addForm() throws Exception {
 
 		System.out.println("ADDDDD:member_id:::::::::::::::::::::::" + member_id);
 
 		return "add";
+
+	}
+	
+	
+	/* ***To navigate to the form to Add Responder********************************************/
+	public String addFormUser() throws Exception {
+
+		System.out.println("ADDDDD:member_id:::::::::::::::::::::::" + member_id);
+
+		return "addUser";
 
 	}
 
@@ -287,15 +324,20 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		 * File destFile = new File(destPath, userImageFileName);
 		 * FileUtils.copyFile(userImage, destFile);
 		 */
-		destPath = servletRequest.getServletContext().getRealPath("/");
+		
+		 contextPath = servletRequest.getContextPath()+"/images";
+		System.out.println("contextPath::::::::"+contextPath);
+		
+		//destPath=contextPath+"/images/";
+		//working
+		destPath = servletRequest.getServletContext().getRealPath("/images");
 
-		
-		//destPath="/images";
-		
+		//working
 		System.out.println("Server path:" + destPath);
 		File fileToCreate = new File(destPath, this.userImageFileName);
 
 		FileUtils.copyFile(this.userImage, fileToCreate);
+		
 		System.out.println("member_id::" + member_id);
 		int memberID = DBobjectDAO.add(name, address, destPath, skill, info, zipcode, phone, member_id);
 		profileViewLst = viewProfile(memberID);
@@ -307,6 +349,73 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 	}
 
+	
+	
+	public String addUser() throws Exception {
+
+		System.out.println("member_id::::::::________>>>::" + member_id);
+		List modifyList = new ArrayList();
+		DBobjectDAO = new DBobjectDAOImp();
+
+		name = this.name;
+		address = this.address;
+		destPath=this.destPath;
+		phone = this.phone;
+		zipcode = this.zipcode;
+		email = this.email;
+		skill=this.skill;
+		info=this.info;
+		System.out.println("lpassword->>>>>>>>>>>INSIDE ADD LOGIN ACTION>>");
+		
+		
+		
+		System.out.println("name::::::::"+name);
+		System.out.println("address::::::::"+address);
+		System.out.println("destPath::::::::"+destPath);
+		System.out.println("skill::::::::"+skill);
+		System.out.println("info::::::::"+info);
+		session = servletRequest.getSession();
+		String a=(String) session.getAttribute("memberIdSession");
+		System.out.println("aaaaaaaaaaaaaa:"+a);
+
+		/*
+		 * String contextPath = servletRequest.getContextPath();
+		 * 
+		 * System.out.println("path::"+contextPath); destPath =
+		 * contextPath+"/images/"; System.out.println("Src File name: " +
+		 * userImage); System.out.println("Dst File name: " +
+		 * userImageFileName); System.out.println(" destPath: " + destPath);
+		 * 
+		 * File destFile = new File(destPath, userImageFileName);
+		 * FileUtils.copyFile(userImage, destFile);
+		 */
+		
+		 contextPath = servletRequest.getContextPath()+"/images";
+		System.out.println("contextPath::::::::"+contextPath);
+		
+		//destPath=contextPath+"/images/";
+		//working
+		destPath = servletRequest.getServletContext().getRealPath("/images");
+
+		//working
+		System.out.println("Server path:" + destPath);
+		File fileToCreate = new File(destPath, this.userImageFileName);
+
+		FileUtils.copyFile(this.userImage, fileToCreate);
+		
+		System.out.println("member_id::" + member_id);
+		int memberID = DBobjectDAO.addUser(name, address, destPath, skill, info, zipcode, phone, member_id);
+		profileViewLst = viewProfile(memberID);
+		System.out.println("memberID::loginaction---" + memberID);
+		if (memberID == 0) {
+			return "registered";
+		} else
+			return "view";
+
+	}
+
+	
+	
 	public String getSkill() {
 		return skill;
 	}

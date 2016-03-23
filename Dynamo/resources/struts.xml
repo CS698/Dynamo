@@ -5,6 +5,7 @@
 
 <struts>
 <constant name="struts.multipart.saveDir" value="/Dynamo/images" />
+
 	<package name="Struts2Beginner" extends="struts-default">
 
 
@@ -25,6 +26,13 @@
 
 
 		</action>
+		
+		<action name="addFormUser" class="net.dynamo.action.LoginAction"
+			method="addFormUser">
+			<result name="addUser">/AddUser.jsp</result>
+
+
+		</action>
 
 		<action name="add" class="net.dynamo.action.LoginAction"
 			method="add">
@@ -36,6 +44,15 @@
 				</param>
 			</interceptor-ref>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="view">/Welcome.jsp</result>
+			<result name="registered">/SuccessRegistration.jsp</result>
+		</action>
+		
+		
+		<action name="addUser" class="net.dynamo.action.LoginAction"
+			method="addUser">
+
+			
 			<result name="view">/Welcome.jsp</result>
 			<result name="registered">/SuccessRegistration.jsp</result>
 		</action>

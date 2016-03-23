@@ -27,7 +27,14 @@ Email Address :<s:property value="email"/><br/>
    <s:param name="member_id" value="%{member_id}" /> 
 </s:url>
 <s:a href="%{url}">
-    Add Member
+    Add First Responder
+</s:a>
+
+<s:url value="addFormUser" var="url">
+   <s:param name="member_id" value="%{member_id}" /> 
+</s:url>
+<s:a href="%{url}">
+    Add User
 </s:a>
 </s:iterator> 
 </body>

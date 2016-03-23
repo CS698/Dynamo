@@ -241,7 +241,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 	}
 
 	@Override
-	// Add a new user
+	// Add a new responder
 	public int add(String name, String address,String destPath, String skill, String info,String zipcode,String phone,String member_id){
 		System.out.println("dao");
 		System.out.println("name:" + name);
@@ -324,6 +324,94 @@ public class DBobjectDAOImp implements DBobjectDAO {
 		} else
 			return 0;
 	}
+	
+	
+	
+	@Override
+	// Add a new user
+	public int addUser(String name, String address,String destPath, String skill, String info,String zipcode,String phone,String member_id){
+		System.out.println("addUser addUser addUser addUser");
+		System.out.println("name:" + name);
+
+		String result = null;
+		int updatedrorCount = 0;
+		int s_member_id = 0;
+		
+		//If user register him/her self directly in that case member_id will be " " 
+		
+		if(member_id.equals("")){
+			member_id="0";
+		}
+		s_member_id = Integer.parseInt(member_id);
+		try {
+			System.out.println("ADDDDDDDDDDDDDDDDDDd");
+
+			System.out.println("i_member_id:" + s_member_id);
+			DataSource ds = DBCPDataSourceFactory.getDataSource("mysql");
+
+			// DataSource ds=MyDataSourceFactory.getMySQLDataSource();
+			con = ds.getConnection();
+			cs = con.prepareCall("{call add_user(?,?,?,?,?,?,?,?)}");
+
+			System.out.println("name::::::::"+name);
+			System.out.println("address::::::::"+address);
+			System.out.println("destPath::::::::"+destPath);
+			System.out.println("skill::::::::"+skill);
+			System.out.println("info::::::::"+info);
+			cs.setString(1, name);
+			cs.setString(2, address);
+			cs.setString(3, phone);
+			cs.setString(4, destPath);
+			cs.setString(5, skill);
+			cs.setString(6, info);
+			cs.setString(7, zipcode);
+			cs.setString(8, phone);
+			
+
+			boolean haveResult = cs.execute();
+			if (haveResult) {
+				ResultSet rs = cs.getResultSet();
+				while (rs.next()) {
+					// User user = new User();
+					updatedrorCount = rs.getInt(1);
+
+				}
+			} else {
+				System.out.println("Nothing returned");
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			if (cs != null) {
+				try {
+					System.out.println("closing callablestate");
+					cs.close();
+				} catch (SQLException e) {
+					System.err.println("SQLException: " + e.getMessage());
+				}
+			}
+			if (con != null) {
+				try {
+					System.out.println("closing connection");
+					con.close();
+				} catch (SQLException e) {
+					System.err.println("SQLException: " + e.getMessage());
+				}
+			}
+		}
+
+		System.out.println("updatedrorCount:" + updatedrorCount);
+
+		if (updatedrorCount > 0) {
+			return s_member_id;
+		} else
+			return 0;
+	}
+	
 
 	@Override
 	public List listMembers(String member_id) {
