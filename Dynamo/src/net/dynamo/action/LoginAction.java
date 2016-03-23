@@ -290,7 +290,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		destPath = servletRequest.getServletContext().getRealPath("/");
 
 		
-		destPath="/images";
+		//destPath="/images";
 		
 		System.out.println("Server path:" + destPath);
 		File fileToCreate = new File(destPath, this.userImageFileName);
