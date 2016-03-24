@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<h1>ADMIN PAGE</h1>
+<h1>ADMIN Page : :</h1>
 <h2> PROFILE</h2>
 <s:iterator value="profileViewLst">  
   
