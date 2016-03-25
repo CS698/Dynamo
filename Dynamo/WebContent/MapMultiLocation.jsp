@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html> 
+<%@ include file="/css/style.css"%>
+<%@ include file="header.jsp" %>
 <head> 
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
   <title>Google Maps Multiple Markers</title> 
@@ -9,7 +11,14 @@
           type="text/javascript"></script>
 </head> 
 <body>
-  <div id="map" style="width: 500px; height: 400px;"></div>
+<h2 align="center">Location Map</h2>
+<table>
+<tr>
+<td height="600px">
+<%@ include file="Menu.jsp" %>
+</td>
+<td height="600px" width="75%">
+<div id="map" style="width: 1600px; height: 600px;"></div>
 
   <script type="text/javascript">
     var locations = [
@@ -47,5 +56,9 @@
       })(marker, i));
     }
   </script>
+</td>
+</tr>
+</table>
+  
 </body>
 </html>

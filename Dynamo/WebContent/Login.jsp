@@ -4,9 +4,11 @@
 <head>
 <title>DYNAMO Project</title>
 </head>
- 
+<%@ include file="/css/style.css"%>
+<%@ include file="header.jsp" %>
 <body>
-<h2>DYNAMO</h2>
+<div align="center">
+<h2>Please enter user name and password:</h2>
 <s:actionerror />
 <s:form action="login" method="post">
     <s:textfield name="username" key="Login ID" size="20" />
@@ -16,6 +18,8 @@
 <s:url value="addForm" var="url">
    <s:param name="member_id" value="%{member_id}" /> 
 </s:url>
+
+</div>
 
 </body>
 </html>
