@@ -149,7 +149,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 		}
 
-		if (validationLst.get(2).equals("commnader")) {
+		if (validationLst.get(2).equals("admin")) {
 			System.out.println("I am admin");
 
 			int memberId = Integer.parseInt((String) validationLst.get(0));
