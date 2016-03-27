@@ -17,7 +17,7 @@
 <%@ include file="Menu.jsp" %>
 </td>
 <td height="600px">
-<embed type="application/x-mplayer2" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/" name="mediaplayer1" ShowStatusBar="true" EnableContextMenu="false" autostart="true" width="1600" height="600" loop="false" src="http://localhost:8080/Dynamo/Videos/SampleVideo.mp4" />
+<embed  name="mediaplayer1" ShowStatusBar="true" EnableContextMenu="false" autostart="true" width="1600" height="600" loop="false" src="<%=request.getContextPath()%>/videos/2016-03-24 00.00.00 Drone Video.mp4" />
 </td>
 </tr>
 </table>

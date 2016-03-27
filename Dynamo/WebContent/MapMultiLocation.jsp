@@ -4,6 +4,11 @@
 <html> 
 <%@ include file="/css/style.css"%>
 <%@ include file="header.jsp" %>
+<style>
+div {
+     color:black;
+}
+</style>
 <head> 
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
   <title>Google Maps Multiple Markers</title> 
