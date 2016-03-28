@@ -22,14 +22,19 @@
     <s:textfield name="name" key="Name" size="20" />
     <s:textfield name="address" key="Address" size="20" />
 
-    <s:textfield name="skill" key="skill" size="20" />
+    
+ <s:select name="skill" key ="Skills"  list="#{'Select':'Select Skill','doctor':'doctor', 'police':'police',
+
+                    'comander':'comander'}"/>
+ 
+    
    
-    <s:textfield name="info" key="info" size="20" />
+    <s:textfield name="info" key="Organization" size="20" />
      
     <s:textfield name="zipcode" key="zipcode" size="20" />
     <s:textfield name="role" key="Role" size="20" />
      <s:textfield name="phone" key="phone" size="20" />
-    
+    <s:textfield name="tagId" key="Tag ID" size="20" />
    
     <s:file name ="userImage" label="Upload Photo"/>
    

@@ -36,6 +36,8 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 	private String name;
 	private String address;
+	private int tagId;
+	
 	private String phone;
 	private String zip;
 	private String email;
@@ -306,12 +308,10 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		
 		System.out.println("name::::::::"+name);
 		System.out.println("address::::::::"+address);
-		System.out.println("destPath::::::::"+destPath);
 		System.out.println("skill::::::::"+skill);
 		System.out.println("info::::::::"+info);
 		session = servletRequest.getSession();
-		String a=(String) session.getAttribute("memberIdSession");
-		System.out.println("aaaaaaaaaaaaaa:"+a);
+	
 
 		/*
 		 * String contextPath = servletRequest.getContextPath();
@@ -338,8 +338,12 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 		FileUtils.copyFile(this.userImage, fileToCreate);
 		
+		
+		String imageName=this.userImageFileName;
+		System.out.println("imageName:::::::::::"+imageName);
+		
 		System.out.println("member_id::" + member_id);
-		int memberID = DBobjectDAO.add(name, address, destPath, skill, info, zipcode, phone, member_id);
+		int memberID = DBobjectDAO.add(name, address, imageName, skill, info, zipcode, phone,tagId, member_id);
 		profileViewLst = viewProfile(memberID);
 		System.out.println("memberID::loginaction---" + memberID);
 		if (memberID == 0) {
@@ -400,8 +404,10 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		//working
 		System.out.println("Server path:" + destPath);
 		File fileToCreate = new File(destPath, this.userImageFileName);
-
+		
+		
 		FileUtils.copyFile(this.userImage, fileToCreate);
+		
 		
 		System.out.println("member_id::" + member_id);
 		int memberID = DBobjectDAO.addUser(name, address, destPath, skill, info, zipcode, phone, member_id);
@@ -613,4 +619,13 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
+	
+	public int getTagId() {
+		return tagId;
+	}
+
+	public void setTagId(int tagId) {
+		this.tagId = tagId;
+	}
+
 }

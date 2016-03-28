@@ -132,7 +132,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 					user.setAddress((String) rs.getString(3));
 					//user.setStatus((String) rs.getString(4));
 					user.setEmail((String) rs.getString(4));
-					user.setMember_id((String) rs.getString(7));
+					user.setMember_id((String) rs.getString(5));
 
 					viewProfileList.add(user);
 
@@ -242,7 +242,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 
 	@Override
 	// Add a new responder
-	public int add(String name, String address,String destPath, String skill, String info,String zipcode,String phone,String member_id){
+	public int add(String name, String address,String destPath, String skill, String info,String zipcode,String phone,int tagId,String member_id){
 		System.out.println("dao");
 		System.out.println("name:" + name);
 
@@ -264,7 +264,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 
 			// DataSource ds=MyDataSourceFactory.getMySQLDataSource();
 			con = ds.getConnection();
-			cs = con.prepareCall("{call add_user(?,?,?,?,?,?,?,?)}");
+			cs = con.prepareCall("{call add_responder(?,?,?,?,?,?,?,?)}");
 
 			System.out.println("name::::::::"+name);
 			System.out.println("address::::::::"+address);
@@ -273,12 +273,12 @@ public class DBobjectDAOImp implements DBobjectDAO {
 			System.out.println("info::::::::"+info);
 			cs.setString(1, name);
 			cs.setString(2, address);
-			cs.setString(3, phone);
-			cs.setString(4, destPath);
-			cs.setString(5, skill);
-			cs.setString(6, info);
-			cs.setString(7, zipcode);
-			cs.setString(8, phone);
+			cs.setString(3, destPath);
+			cs.setString(4, skill);
+			cs.setString(5, info);
+			cs.setString(6, zipcode);
+			cs.setString(7, phone);
+			cs.setInt(8, tagId);
 			
 
 			boolean haveResult = cs.execute();
