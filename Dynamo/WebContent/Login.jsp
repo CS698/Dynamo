@@ -11,9 +11,9 @@
 <h2>Please enter user name and password:</h2>
 <s:actionerror />
 <s:form action="login" method="post">
-    <s:textfield name="username" key="Login ID" size="20" />
-    <s:password name="password" key="Password" size="20" />
-    <s:submit method="execute" key="login" value="login" align="center" />
+    <s:textfield name="username" size="20" />
+    <s:password name="password"  size="20" />
+    <s:submit method="execute" value="login" align="center" />
 </s:form>
 <s:url value="addForm" var="url">
    <s:param name="member_id" value="%{member_id}" /> 

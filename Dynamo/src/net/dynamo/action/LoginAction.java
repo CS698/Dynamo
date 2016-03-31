@@ -26,6 +26,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import net.dynamo.Dao.DBobjectDAO;
 import net.dynamo.Dao.DBobjectDAOImp;
+import net.dynamo.VO.Responder;
 import net.dynamo.VO.User;
 
 public class LoginAction extends ActionSupport implements ServletRequestAware {
@@ -37,7 +38,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	private String name;
 	private String address;
 	private int tagId;
-	
+
 	private String phone;
 	private String zip;
 	private String email;
@@ -46,6 +47,8 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	private String status;
 	private String countryCode;
 	private String zipcode;
+	//private static final long serialVersionUID = -6765991741441442190L;
+	public List responderDetailsList = new ArrayList();
 
 	// private String hintQuestion;
 	// private String hintAnswer;
@@ -56,7 +59,8 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	/* Dynamo Image upload */
 	private File userImage;
 	private String destPath;
-	private String contextPath ;
+	private String contextPath;
+
 	public String getContextPath() {
 		return contextPath;
 	}
@@ -70,11 +74,10 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 	private String userImageContentType;
 	private String userImageFileName;
-	
-	
-	
+
 	File fileUpload;
-    public File getFileUpload() {
+
+	public File getFileUpload() {
 		return fileUpload;
 	}
 
@@ -83,11 +86,12 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	}
 
 	String fileUploadContentType;
-    String fileUploadFileName;
+	String fileUploadFileName;
 
 	private HttpServletRequest servletRequest;
 	//////////////////////////////////////
 	HttpSession session;
+
 	public HttpSession getSession() {
 		return session;
 	}
@@ -136,8 +140,9 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	 * @exception Exception.
 	 *
 	 */
-	
+
 	public String execute() throws Exception {
+		System.out.println("this.username"+this.username);
 		String password = this.password;
 		String username = this.username;
 
@@ -180,10 +185,10 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		System.out.println("ViewprofileViewLst:--------------" + ViewprofileViewLst);
 		ViewprofileViewLst = DBobjectDAO.viewProfile(memberId);
 
-		 session = servletRequest.getSession();
-		session.setAttribute("memberIdSession", memberId+"");
-		String memberIdSession=(String) session.getAttribute("memberIdSession");
-		System.out.println("memberIdSession:"+memberIdSession);
+		session = servletRequest.getSession();
+		session.setAttribute("memberIdSession", memberId + "");
+		String memberIdSession = (String) session.getAttribute("memberIdSession");
+		System.out.println("memberIdSession:" + memberIdSession);
 		System.out.println("ViewprofileViewLst:" + ViewprofileViewLst);
 		return ViewprofileViewLst;
 	}
@@ -269,7 +274,9 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 	}
 
-	/* ***To navigate to the form to Add Responder********************************************/
+	/*
+	 * ***To navigate to the form to Add Responder
+	 ********************************************/
 	public String addForm() throws Exception {
 
 		System.out.println("ADDDDD:member_id:::::::::::::::::::::::" + member_id);
@@ -277,9 +284,10 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		return "add";
 
 	}
-	
-	
-	/* ***To navigate to the form to Add Responder********************************************/
+
+	/*
+	 * ***To navigate to the form to Add Responder
+	 ********************************************/
 	public String addFormUser() throws Exception {
 
 		System.out.println("ADDDDD:member_id:::::::::::::::::::::::" + member_id);
@@ -296,22 +304,19 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 		name = this.name;
 		address = this.address;
-		destPath=this.destPath;
+		destPath = this.destPath;
 		phone = this.phone;
 		zipcode = this.zipcode;
 		email = this.email;
-		skill=this.skill;
-		info=this.info;
+		skill = this.skill;
+		info = this.info;
 		System.out.println("lpassword->>>>>>>>>>>INSIDE ADD LOGIN ACTION>>");
-		
-		
-		
-		System.out.println("name::::::::"+name);
-		System.out.println("address::::::::"+address);
-		System.out.println("skill::::::::"+skill);
-		System.out.println("info::::::::"+info);
+
+		System.out.println("name::::::::" + name);
+		System.out.println("address::::::::" + address);
+		System.out.println("skill::::::::" + skill);
+		System.out.println("info::::::::" + info);
 		session = servletRequest.getSession();
-	
 
 		/*
 		 * String contextPath = servletRequest.getContextPath();
@@ -324,26 +329,25 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		 * File destFile = new File(destPath, userImageFileName);
 		 * FileUtils.copyFile(userImage, destFile);
 		 */
-		
-		 contextPath = servletRequest.getContextPath()+"/images";
-		System.out.println("contextPath::::::::"+contextPath);
-		
-		//destPath=contextPath+"/images/";
-		//working
+
+		contextPath = servletRequest.getContextPath() + "/images";
+		System.out.println("contextPath::::::::" + contextPath);
+
+		// destPath=contextPath+"/images/";
+		// working
 		destPath = servletRequest.getServletContext().getRealPath("/images");
 
-		//working
+		// working
 		System.out.println("Server path:" + destPath);
 		File fileToCreate = new File(destPath, this.userImageFileName);
 
 		FileUtils.copyFile(this.userImage, fileToCreate);
-		
-		
-		String imageName=this.userImageFileName;
-		System.out.println("imageName:::::::::::"+imageName);
-		
+
+		String imageName = this.userImageFileName;
+		System.out.println("imageName:::::::::::" + imageName);
+
 		System.out.println("member_id::" + member_id);
-		int memberID = DBobjectDAO.add(name, address, imageName, skill, info, zipcode, phone,tagId, member_id);
+		int memberID = DBobjectDAO.add(name, address, imageName, skill, info, zipcode, phone, tagId, member_id);
 		profileViewLst = viewProfile(memberID);
 		System.out.println("memberID::loginaction---" + memberID);
 		if (memberID == 0) {
@@ -353,8 +357,6 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 	}
 
-	
-	
 	public String addUser() throws Exception {
 
 		System.out.println("member_id::::::::________>>>::" + member_id);
@@ -363,24 +365,22 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 		name = this.name;
 		address = this.address;
-		destPath=this.destPath;
+		destPath = this.destPath;
 		phone = this.phone;
 		zipcode = this.zipcode;
 		email = this.email;
-		skill=this.skill;
-		info=this.info;
+		skill = this.skill;
+		info = this.info;
 		System.out.println("lpassword->>>>>>>>>>>INSIDE ADD LOGIN ACTION>>");
-		
-		
-		
-		System.out.println("name::::::::"+name);
-		System.out.println("address::::::::"+address);
-		System.out.println("destPath::::::::"+destPath);
-		System.out.println("skill::::::::"+skill);
-		System.out.println("info::::::::"+info);
+
+		System.out.println("name::::::::" + name);
+		System.out.println("address::::::::" + address);
+		System.out.println("destPath::::::::" + destPath);
+		System.out.println("skill::::::::" + skill);
+		System.out.println("info::::::::" + info);
 		session = servletRequest.getSession();
-		String a=(String) session.getAttribute("memberIdSession");
-		System.out.println("aaaaaaaaaaaaaa:"+a);
+		String a = (String) session.getAttribute("memberIdSession");
+		System.out.println("aaaaaaaaaaaaaa:" + a);
 
 		/*
 		 * String contextPath = servletRequest.getContextPath();
@@ -393,22 +393,20 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		 * File destFile = new File(destPath, userImageFileName);
 		 * FileUtils.copyFile(userImage, destFile);
 		 */
-		
-		 contextPath = servletRequest.getContextPath()+"/images";
-		System.out.println("contextPath::::::::"+contextPath);
-		
-		//destPath=contextPath+"/images/";
-		//working
+
+		contextPath = servletRequest.getContextPath() + "/images";
+		System.out.println("contextPath::::::::" + contextPath);
+
+		// destPath=contextPath+"/images/";
+		// working
 		destPath = servletRequest.getServletContext().getRealPath("/images");
 
-		//working
+		// working
 		System.out.println("Server path:" + destPath);
 		File fileToCreate = new File(destPath, this.userImageFileName);
-		
-		
+
 		FileUtils.copyFile(this.userImage, fileToCreate);
-		
-		
+
 		System.out.println("member_id::" + member_id);
 		int memberID = DBobjectDAO.addUser(name, address, destPath, skill, info, zipcode, phone, member_id);
 		profileViewLst = viewProfile(memberID);
@@ -420,8 +418,6 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 	}
 
-	
-	
 	public String getSkill() {
 		return skill;
 	}
@@ -448,6 +444,41 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		System.out.println("memberID::loginaction---" + memberList);
 		return "list";
 
+	}
+
+	/***************** To Fetch UAV VDO ************************/
+	public String addUAV() throws Exception {
+		return "addUAV";
+	}
+
+	/*****************
+	 * To Fetch Location of First Responder to MAP
+	 ************************/
+	public String fetchToMap() throws Exception {
+		Responder responder = new Responder();
+		responder.setResName("maurani");
+		responder.setImageName("icon.png");
+		responder.setOrganization("Fire");
+		responder.setLattitude("-33.923036");
+		responder.setLongitude("151.259052");
+		responderDetailsList.add(responder);
+		// outerList.add(responderDetailsList);
+
+		Responder responder1 = new Responder();
+		responder1.setResName("Ramya");
+		responder1.setImageName("icon.png");
+		responder1.setOrganization("Police");
+		responder1.setLattitude("-34.028249");
+		responder1.setLongitude("151.157507");
+		responderDetailsList.add(responder1);
+		// outerList.add(responderDetailsList);
+		System.out.println("responder::" + responderDetailsList);
+		// Gson m = new Gson();
+		// String jsonData = new Gson().toJson(responderDetailsList);
+		// System.out.println("jsonData::"+jsonData);
+		System.out.println("responder::" + responderDetailsList);
+
+		return "fetchToMap";
 	}
 
 	public String getUsername() {
@@ -619,7 +650,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
-	
+
 	public int getTagId() {
 		return tagId;
 	}

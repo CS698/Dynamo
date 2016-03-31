@@ -6,8 +6,9 @@
 <struts>
 <constant name="struts.multipart.saveDir" value="/Dynamo/images" />
 
-	<package name="Struts2Beginner" extends="struts-default">
+	<package name="default" namespace="/" extends="json-default">
 
+		
 
 		<action name="login" class="net.dynamo.action.LoginAction"
 			method="execute">
@@ -58,7 +59,22 @@
 		</action>
 		
 
+<action name="addUAV" class="net.dynamo.action.LoginAction"
+			method="addUAV">
+			<result name="addUAV" >/UAV.jsp</result>
 
+
+		</action>
+		
+				<action name="fetchToMap" class="net.dynamo.action.FetchMapAction"
+			method="fetchToMap">
+					
+					
+			<result name="fetchToMap" type="json">/MapMultiLocation.jsp</result>
+			
+
+		</action>
+		
 
 	</package>
 </struts>
