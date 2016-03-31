@@ -47,12 +47,9 @@ li a:hover {
 		<li><s:url value="addForm" var="url"></s:url>
 		 <s:a href="%{url}"> Add Responder</s:a>
 		</li>
-		<li><s:a href="MapMultiLocation.jsp">View RFID Reader</s:a></li>
-		<li><s:a href="MapMultiLocation.jsp">Search Responder</s:a></li>
-		<li><s:url value="fetchToMap" var="url"></s:url>
-		 <s:a href="%{url}">View Map</s:a>
-		</li>
-		
+		<li><s:a href="ViewRFIDReader.jsp">View RFID Reader</s:a></li>
+		<li><s:a href="SearchResponders.jsp">Search Responder</s:a></li>
+		<li><s:a href="MapMultiLocation.jsp">View Map</s:a></li>
 		<li><s:a href="MapMultiLocation.jsp">Find Path</s:a></li>
 		<li><s:url value="addUAV" var="url"></s:url>
 		 <s:a href="%{url}"> UAV Data</s:a>
