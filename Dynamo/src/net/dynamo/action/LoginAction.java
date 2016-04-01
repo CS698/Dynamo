@@ -9,6 +9,7 @@ handle all the User action like
 package net.dynamo.action;
 
 import java.io.File;
+import org.apache.log4j.Logger;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,6 +31,7 @@ import net.dynamo.VO.Responder;
 import net.dynamo.VO.User;
 
 public class LoginAction extends ActionSupport implements ServletRequestAware {
+	final static Logger logger = Logger.getLogger(LoginAction.class);
 	private String username;
 	private String password;
 	private DBobjectDAO DBobjectDAO;
@@ -150,6 +152,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 		validationLst = DBobjectDAO.validate(username, password);
 		System.out.println("validationLst" + validationLst);
+		logger.debug("execute method in LoginAction : " + validationLst);
 		if (validationLst.get(0).equals("Invalid Credential")) {
 			validationLst.clear();
 			return "input";
@@ -190,6 +193,8 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		String memberIdSession = (String) session.getAttribute("memberIdSession");
 		System.out.println("memberIdSession:" + memberIdSession);
 		System.out.println("ViewprofileViewLst:" + ViewprofileViewLst);
+		logger.debug("viewProfile method in LoginAction : " + memberIdSession);
+		logger.debug("viewProfile method in LoginAction : " + ViewprofileViewLst);
 		return ViewprofileViewLst;
 	}
 
@@ -205,6 +210,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		// for the time being showing admin page..need to do with session
 		profileViewLst = viewProfile(1);
 		System.out.println("profileViewLst---" + profileViewLst);
+		logger.debug("deleteMember method in LoginAction : " + profileViewLst);
 		listMembers();
 		return "view";
 
@@ -221,6 +227,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 		// DBobjectDAO.viewProfile(memberId);
 		System.out.println("profileViewLst:" + profileViewLst);
+		logger.debug("viewBymemberId method in LoginAction : " + profileViewLst);
 		return "view";
 	}
 
@@ -235,12 +242,14 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 		// DBobjectDAO.viewProfile(memberId);
 		System.out.println("profileViewLst:" + profileViewLst);
+		logger.debug("viewBymemberIdAdmin method in LoginAction : " + profileViewLst);
 		return "view";
 	}
 
 	public String homeAdmin(String admin_id) {
 
 		System.out.println("admin_id::::::::::::::::::::::::" + admin_id);
+		logger.debug("homeAdmin method in LoginAction : " + admin_id);
 		int adminid = Integer.parseInt(admin_id);
 		viewProfile(adminid);
 		return "view";
@@ -249,6 +258,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	public String modify() throws Exception {
 
 		System.out.println("member_id::::::::::::::::::::::::" + member_id);
+		logger.debug("modify method in LoginAction : ");
 
 		return "modify";
 
@@ -270,6 +280,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		int memberID = DBobjectDAO.modifyProfile(name, address, phone, countryCode, email, member_id);
 		profileViewLst = viewProfile(memberID);
 		System.out.println("profileViewLst---" + profileViewLst);
+		logger.debug("modifyRecord method in LoginAction : " + profileViewLst);
 		return "view";
 
 	}
@@ -280,6 +291,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	public String addForm() throws Exception {
 
 		System.out.println("ADDDDD:member_id:::::::::::::::::::::::" + member_id);
+		logger.debug("addForm method in LoginAction : ");
 
 		return "add";
 
@@ -291,7 +303,8 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	public String addFormUser() throws Exception {
 
 		System.out.println("ADDDDD:member_id:::::::::::::::::::::::" + member_id);
-
+		
+		logger.debug("addFormUser method in LoginAction : ");
 		return "addUser";
 
 	}
@@ -350,6 +363,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		int memberID = DBobjectDAO.add(name, address, imageName, skill, info, zipcode, phone, tagId, member_id);
 		profileViewLst = viewProfile(memberID);
 		System.out.println("memberID::loginaction---" + memberID);
+		logger.debug("add method in LoginAction : " + memberID);
 		if (memberID == 0) {
 			return "registered";
 		} else
@@ -411,6 +425,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		int memberID = DBobjectDAO.addUser(name, address, destPath, skill, info, zipcode, phone, member_id);
 		profileViewLst = viewProfile(memberID);
 		System.out.println("memberID::loginaction---" + memberID);
+		logger.debug("addUser method in LoginAction : " + memberID);
 		if (memberID == 0) {
 			return "registered";
 		} else
@@ -442,6 +457,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 		memberList = DBobjectDAO.listMembers(member_id);
 		System.out.println("memberID::loginaction---" + memberList);
+		logger.debug("listMembers method in LoginAction : + memberList");
 		return "list";
 
 	}
@@ -477,6 +493,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		// String jsonData = new Gson().toJson(responderDetailsList);
 		// System.out.println("jsonData::"+jsonData);
 		System.out.println("responder::" + responderDetailsList);
+		logger.debug("fetchToMap method in LoginAction : + responderDetailsList");
 
 		return "fetchToMap";
 	}

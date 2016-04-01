@@ -1,5 +1,6 @@
 package net.dynamo.utility;
 import java.security.MessageDigest;
+import org.apache.log4j.Logger;
 import java.util.Arrays;
 
 import javax.crypto.Cipher;
@@ -8,8 +9,10 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class TripleDESTest {
+	final static Logger logger = Logger.getLogger(TripleDESTest.class);
 
     public static void main(String[] args) throws Exception {
+    	
 
     	String text = "kyle boon";
 
@@ -19,6 +22,7 @@ public class TripleDESTest {
 
     	System.out.println(codedtext); // this is a byte array, you'll just see a reference to an array
     	System.out.println(decodedtext); // This correctly shows "kyle boon"
+    	logger.debug(" main method in TripleDESTest : ");
     }
 
     public static byte[] encrypt(String message) throws Exception {
@@ -37,6 +41,7 @@ public class TripleDESTest {
 
     	final byte[] plainTextBytes = message.getBytes("utf-8");
     	final byte[] cipherText = cipher.doFinal(plainTextBytes);
+    	logger.debug(" encrypt method in TripleDESTest : ");
     	// final String encodedCipherText = new sun.misc.BASE64Encoder()
     	// .encode(cipherText);
 
@@ -60,6 +65,7 @@ public class TripleDESTest {
     	// final byte[] encData = new
     	// sun.misc.BASE64Decoder().decodeBuffer(message);
     	final byte[] plainText = decipher.doFinal(message);
+    	logger.debug(" decrypt method in TripleDESTest : ");
 
     	return new String(plainText, "UTF-8");
     }

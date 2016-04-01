@@ -1,6 +1,7 @@
 package net.dynamo.jdbc.datasource;
 
 import java.io.IOException;
+import org.apache.log4j.Logger;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -8,6 +9,7 @@ import javax.sql.DataSource;
 import org.apache.commons.dbcp.BasicDataSource;;
 
 public class DBCPDataSourceFactory {
+	final static Logger logger = Logger.getLogger(DBCPDataSourceFactory.class);
 
 	public static DataSource getDataSource(String dbType) {
 		// Properties props = new Properties();
@@ -41,6 +43,7 @@ public class DBCPDataSourceFactory {
 			return ds;
 		} catch (IOException e) {
 			e.printStackTrace();
+			logger.debug("catch block of getDataSource method in DBCPDataSourceFactory : " + e.getMessage());
 			return null;
 		}
 	}

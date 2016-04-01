@@ -1,6 +1,7 @@
 package net.dynamo.utility;
 
 import java.security.InvalidKeyException;
+import org.apache.log4j.Logger;
 import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.BadPaddingException;
@@ -11,7 +12,8 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
 public class JEncrytion
-{    
+{ 
+	final static Logger logger = Logger.getLogger(JEncrytion.class);
 	public static void main(String[] argv) {
 		
 		try{
@@ -48,14 +50,19 @@ public class JEncrytion
 		    
 		}catch(NoSuchAlgorithmException e){
 			e.printStackTrace();
+			logger.debug("catch block of main method in JEncrytion : " + e.getMessage());
 		}catch(NoSuchPaddingException e){
 			e.printStackTrace();
+			logger.debug("catch block of main method in JEncrytion : " + e.getMessage());
 		}catch(InvalidKeyException e){
 			e.printStackTrace();
+			logger.debug("catch block of main method in JEncrytion : " + e.getMessage());
 		}catch(IllegalBlockSizeException e){
 			e.printStackTrace();
+			logger.debug("catch block of main method in JEncrytion : " + e.getMessage());
 		}catch(BadPaddingException e){
 			e.printStackTrace();
+			logger.debug("catch block of main method in JEncrytion : " + e.getMessage());
 		} 
 	   
 	}

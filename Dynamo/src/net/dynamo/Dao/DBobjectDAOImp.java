@@ -8,6 +8,7 @@
 package net.dynamo.Dao;
 
 import java.sql.CallableStatement;
+import org.apache.log4j.Logger;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,6 +24,7 @@ import net.dynamo.jdbc.datasource.DBCPDataSourceFactory;
 import net.dynamo.jdbc.datasource.MyDataSourceFactory;
 
 public class DBobjectDAOImp implements DBobjectDAO {
+	final static Logger logger = Logger.getLogger(DBobjectDAOImp.class);
 	Connection con = null;
 	CallableStatement cs = null;
 
@@ -66,12 +68,14 @@ public class DBobjectDAOImp implements DBobjectDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println(e.getMessage());
+			logger.debug("catch block in validate method in DBobjectDAOImp : " + e.getMessage());
 		} finally {
 			if (cs != null) {
 				try {
 					cs.close();
 				} catch (SQLException e) {
 					System.err.println("SQLException: " + e.getMessage());
+					logger.debug("catch block inside finally block in validate method in DBobjectDAOImp : " + e.getMessage());
 				}
 			}
 			if (con != null) {
@@ -79,6 +83,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 					con.close();
 				} catch (SQLException e) {
 					System.err.println("SQLException: " + e.getMessage());
+					logger.debug("catch block in finally block in validate method in DBobjectDAOImp : " + e.getMessage());
 				}
 			}
 		}
@@ -146,6 +151,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println(e.getMessage());
+			logger.debug("catch block in viewProfile method in DBobjectDAOImp : " + e.getMessage());
 		} finally {
 			if (cs != null) {
 				try {
@@ -153,6 +159,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 					cs.close();
 				} catch (SQLException e) {
 					System.err.println("SQLException: " + e.getMessage());
+					logger.debug("catch block in finally block in viewProfile method in DBobjectDAOImp : " + e.getMessage());
 				}
 			}
 			if (con != null) {
@@ -161,6 +168,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 					con.close();
 				} catch (SQLException e) {
 					System.err.println("SQLException: " + e.getMessage());
+					logger.debug("catch block in finally block in viewProfile method in DBobjectDAOImp : " + e.getMessage());
 				}
 			}
 		}
@@ -219,6 +227,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 					cs.close();
 				} catch (SQLException e) {
 					System.err.println("SQLException: " + e.getMessage());
+					logger.debug("catch block in modifyProfile method in DBobjectDAOImp : " + e.getMessage());
 				}
 			}
 			if (con != null) {
@@ -227,6 +236,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 					con.close();
 				} catch (SQLException e) {
 					System.err.println("SQLException: " + e.getMessage());
+					logger.debug("catch block in finally block in modifyProfile method in DBobjectDAOImp : " + e.getMessage());
 				}
 			}
 		}
@@ -298,6 +308,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println(e.getMessage());
+			logger.debug("catch block in add method in DBobjectDAOImp : " + e.getMessage());
 		} finally {
 			if (cs != null) {
 				try {
@@ -305,6 +316,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 					cs.close();
 				} catch (SQLException e) {
 					System.err.println("SQLException: " + e.getMessage());
+					logger.debug("catch block in finally block in add method in DBobjectDAOImp : " + e.getMessage());
 				}
 			}
 			if (con != null) {
@@ -313,6 +325,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 					con.close();
 				} catch (SQLException e) {
 					System.err.println("SQLException: " + e.getMessage());
+					logger.debug("catch block in finally block in add method in DBobjectDAOImp : " + e.getMessage());
 				}
 			}
 		}
@@ -385,6 +398,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println(e.getMessage());
+			logger.debug("catch block in addUser method in DBobjectDAOImp : " + e.getMessage());
 		} finally {
 			if (cs != null) {
 				try {
@@ -392,6 +406,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 					cs.close();
 				} catch (SQLException e) {
 					System.err.println("SQLException: " + e.getMessage());
+					logger.debug("catch block in finally block in addUser method in DBobjectDAOImp : " + e.getMessage());
 				}
 			}
 			if (con != null) {
@@ -400,6 +415,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 					con.close();
 				} catch (SQLException e) {
 					System.err.println("SQLException: " + e.getMessage());
+					logger.debug("catch block in finally block in addUser method in DBobjectDAOImp : " + e.getMessage());
 				}
 			}
 		}
@@ -453,6 +469,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println(e.getMessage());
+			logger.debug("catch block in listMembers method in DBobjectDAOImp : " + e.getMessage());
 		} finally {
 			if (cs != null) {
 				try {
@@ -460,6 +477,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 					cs.close();
 				} catch (SQLException e) {
 					System.err.println("SQLException: " + e.getMessage());
+					logger.debug("catch block in finally block in listMembers method in DBobjectDAOImp : " + e.getMessage());
 				}
 			}
 			if (con != null) {
@@ -468,6 +486,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 					con.close();
 				} catch (SQLException e) {
 					System.err.println("SQLException: " + e.getMessage());
+					logger.debug("catch block in finally block in listMembers method in DBobjectDAOImp : " + e.getMessage());
 				}
 			}
 		}
@@ -514,6 +533,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println(e.getMessage());
+			logger.debug("catch block in deleteMember method in DBobjectDAOImp : " + e.getMessage());
 		} finally {
 			if (cs != null) {
 				try {
@@ -521,6 +541,7 @@ public class DBobjectDAOImp implements DBobjectDAO {
 					cs.close();
 				} catch (SQLException e) {
 					System.err.println("SQLException: " + e.getMessage());
+					logger.debug("catch block in finally block in deleteMember method in DBobjectDAOImp : " + e.getMessage());
 				}
 			}
 			if (con != null) {
@@ -529,6 +550,8 @@ public class DBobjectDAOImp implements DBobjectDAO {
 					con.close();
 				} catch (SQLException e) {
 					System.err.println("SQLException: " + e.getMessage());
+					logger.debug("catch block in finally block in deleteMember method in DBobjectDAOImp : " + e.getMessage());
+					
 				}
 			}
 		}

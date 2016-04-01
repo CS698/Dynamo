@@ -1,11 +1,13 @@
 package net.dynamo.action;
 
 import java.util.ArrayList;
+import org.apache.log4j.Logger;
 import java.util.List;
 
 import net.dynamo.VO.Responder;
 
 public class FetchMapAction {
+	final static Logger logger = Logger.getLogger(FetchMapAction.class);
 	//private static final long serialVersionUID = -6765991741441442190L;
 	public List responderDetailsList = new ArrayList();
 	
@@ -46,6 +48,7 @@ public class FetchMapAction {
 		// String jsonData = new Gson().toJson(responderDetailsList);
 		// System.out.println("jsonData::"+jsonData);
 		System.out.println("responder::" + responderDetailsList);
+		logger.debug(" fetchToMap method in FetchMapAction : " + responderDetailsList );
 
 		return "fetchToMap";
 	}

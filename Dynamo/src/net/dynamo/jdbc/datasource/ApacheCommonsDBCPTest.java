@@ -1,5 +1,6 @@
 package net.dynamo.jdbc.datasource;
 import java.sql.Connection;
+import org.apache.log4j.Logger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -7,6 +8,7 @@ import java.sql.Statement;
 import javax.sql.DataSource;
  
 public class ApacheCommonsDBCPTest {
+	final static Logger logger = Logger.getLogger(ApacheCommonsDBCPTest.class);
  
     public static void main(String[] args) {
         testDBCPDataSource("mysql");
@@ -30,6 +32,7 @@ public class ApacheCommonsDBCPTest {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            logger.debug("catch block of testDBCPDataSource method in ApacheCommonsDBCPTest : " + e.getMessage());
         }finally{
                 try {
                     if(rs != null) rs.close();
@@ -37,6 +40,7 @@ public class ApacheCommonsDBCPTest {
                     if(con != null) con.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
+                    logger.debug("finally block of testDBCPDataSource method in ApacheCommonsDBCPTest : " + e.getMessage());
                 }
         }
     }

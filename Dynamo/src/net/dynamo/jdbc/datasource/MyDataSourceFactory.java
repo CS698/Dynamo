@@ -7,6 +7,7 @@
 */
 package net.dynamo.jdbc.datasource;
 import java.io.FileInputStream;
+import org.apache.log4j.Logger;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -17,6 +18,7 @@ import oracle.jdbc.pool.OracleDataSource;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
  
 public class MyDataSourceFactory {
+	final static Logger logger = Logger.getLogger(MyDataSourceFactory.class);
  
     public static DataSource getMySQLDataSource() {
         Properties props = new Properties();
@@ -31,6 +33,7 @@ public class MyDataSourceFactory {
             mysqlDS.setPassword(props.getProperty("jdbc.password"));
         } catch (IOException e) {
             e.printStackTrace();
+            logger.debug("catch block of getMySQLDataSource method in MyDataSourceFactory : " + e.getMessage());
         }
         return mysqlDS;
     }
