@@ -2,12 +2,8 @@ package net.dynamo.VO;
 
 public class Responder {
 private String resName;
-public String getResName() {
-	return resName;
-}
-public void setResName(String resName) {
-	this.resName = resName;
-}
+private String resId;
+
 private String organization;
 private String lattitude;
 private String longitude;
@@ -38,5 +34,16 @@ public String getImageName() {
 public void setImageName(String imageName) {
 	this.imageName = imageName;
 }
-
+public String getResId() {
+	return resId;
+}
+public void setResId(String resId) {
+	this.resId = resId;
+}
+public String getResName() {
+	return resName;
+}
+public void setResName(String resName) {
+	this.resName = resName;
+}
 }

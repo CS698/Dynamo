@@ -17,33 +17,85 @@ div {
 	type="text/javascript"></script>
 <script type="text/javascript">
      
-  function ShowResLocations(locations) {
-        	
+  function ShowResLocations(Map) {
 	  var map = new google.maps.Map(document.getElementById('map'), {
-           zoom: 10,
-           center: new google.maps.LatLng(-33.92, 151.25),
-           mapTypeId: google.maps.MapTypeId.ROADMAP
-         });
+          zoom: 50,
+          center: new google.maps.LatLng(40.277625, -74.003671),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
 
-         var infowindow = new google.maps.InfoWindow();
-			//alert(locations[0].lattitude)
-         var marker, i;
-         var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-         for (i = 0; i < locations.length; i++) {  
+     
+
+      var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+		//var start=0;
+		//var end =0;
+	  for (var key in Map) {
+		   // alert(key + ': ' + Map[key]);
+		    
+		    var locations=Map[key];
+		   // alert(locations[0].resName);
+		   // alert(locations.length);
+		  //  end = end + locations.length;
+		    if(key==100){
+		    	 image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';	
+		    }
+		    else image='http://localhost:8080/Dynamo/images/s1044534.jpg';
+		    /* alert(listI);
+		    alert(locations[0].resName);
+		
+        	alert(locations.value);
+        	var list=locations[0];
+        	alert(list[0].resName); */
+        	
+     //////
+     //
+    var marker, i;
+   
+	//alert(locations[0].lattitude)
+	
+	var arr = [];
+	 	
+        for (i = 0; i < locations.length; i++) {  
+    	  
+        	// for (i = start; i < end; i++) {
+        	 image = 'http://localhost:8080/Dynamo/images/'+locations[i].imageName;
+        	
+        	 
+        	 // alert(image);
+         var infowindow = new google.maps.InfoWindow();		
            marker = new google.maps.Marker({
              position: new google.maps.LatLng(locations[i].lattitude, locations[i].longitude),
              map: map,
              icon : image
            });
-	      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+           arr.push(marker.getPosition());
+           
+           
+	      google.maps.event.addListener(marker, 'click', (function(marker, i,key) {
 	        return function() {
-	          infowindow.setContent('Name : ' +locations[i].resName + '</br>' +'Organization : ' 
-	        		  +locations[i].organization + '</br>'+ 'Phone no :'+ ' ' +
-	        		  '</br>'+'<img src="<%=request.getContextPath()%>/images/icon.jpg"/>');
+	        	var list=Map[key];
+	          infowindow.setContent('Name : ' +list[i].resName + '</br>' +'Organization : ' 
+	        		  +list[i].organization + '</br>'+ 'Phone no :'+ ' ' +
+	        		  '</br>'+'<img src="<%=request.getContextPath()%>/images/s1044534.jpg"/>');
 	          infowindow.open(map, marker);
 	        }
-	      })(marker, i));
-    }
+	      })(marker, i,key));
+    
+        
+         }
+        	// start=i+1;
+        	 
+         
+         
+         var poly = new google.maps.Polyline({
+             path: arr,
+             strokeColor: '#FF0000',
+             strokeOpacity: 1.0,
+             strokeWeight: 3,
+             map: map    
+           });
+         
+	  }
   }
 (function loadMap() {	 
 		
@@ -52,11 +104,11 @@ div {
 		dataType: "json",
 	    url: 'fetchToMap', 
 	    success: function(res) {
-	    	ShowResLocations(res.responderDetailsList);
+	    	ShowResLocations(res.resDetailsMap);
 	    },
 	    complete: function() {
 	      // Schedule the next request when the current one's complete
-	      setTimeout(loadMap, 10000);
+	      setTimeout(loadMap, 10000000);
 	    }
 	  });
 	})();
