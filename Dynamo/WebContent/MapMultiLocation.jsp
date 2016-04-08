@@ -76,7 +76,7 @@ div {
 	        	var list=Map[key];
 	          infowindow.setContent('Name : ' +list[i].resName + '</br>' +'Organization : ' 
 	        		  +list[i].organization + '</br>'+ 'Phone no :'+ ' ' +
-	        		  '</br>'+'<img src="<%=request.getContextPath()%>/images/s1044534.jpg"/>');
+	        		  '</br>'+'<img src="http://localhost:8080/Dynamo/images/' + list[i].imageName + '"/>');
 	          infowindow.open(map, marker);
 	        }
 	      })(marker, i,key));
