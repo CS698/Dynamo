@@ -8,8 +8,15 @@ private String organization;
 private String lattitude;
 private String longitude;
 private String imageName;
+private int counter;
 
 
+public int getCounter() {
+	return counter;
+}
+public void setCounter(int counter) {
+	this.counter = counter;
+}
 public String getOrganization() {
 	return organization;
 }

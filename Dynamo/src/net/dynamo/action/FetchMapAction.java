@@ -18,6 +18,8 @@ public class FetchMapAction {
 	public List responderDetailsList = new ArrayList();
 	public List  responderDetailsList1= new ArrayList();
 	private FetchMapDAO FetchMapDAO;
+	
+	private int counter;
 	/*public List getResponderDetailsList1() {
 		return responderDetailsList1;
 	}
@@ -27,6 +29,17 @@ public class FetchMapAction {
 		this.responderDetailsList1 = responderDetailsList1;
 	}
 */
+
+	public int getCounter() {
+		return counter;
+	}
+
+
+	public void setCounter(int counter) {
+		this.counter = counter;
+		System.out.println("****************************** Inside set method::"+this.counter);
+	}
+
 
 	Map resDetailsMap=new HashMap();
 	
@@ -111,9 +124,10 @@ public class FetchMapAction {
 		// String jsonData = new Gson().toJson(responderDetailsList);
 		// System.out.println("jsonData::"+jsonData);
 		
+		System.out.println("counter value************************"+this.counter);
 		FetchMapDAO = new FetchMapDAOImp();
 
-		resDetailsMap = FetchMapDAO.fetchToMap(1);
+		resDetailsMap = FetchMapDAO.fetchToMap(3);
 		
 		System.out.println("resDetailsMap from dao::" + resDetailsMap);
 		logger.debug(" fetchToMap method in FetchMapAction : " + responderDetailsList );

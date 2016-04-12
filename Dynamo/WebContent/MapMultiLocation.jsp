@@ -59,9 +59,13 @@ div {
     	  
         	// for (i = start; i < end; i++) {
         	 image = 'http://localhost:8080/Dynamo/images/'+locations[i].imageName;
-        	
+        	 var counter=locations[i].counter;
+        	 document.getElementById('counter').value = counter;
+        	 //alert(counter);
+        	// alert(document.getElementById('counter').value);
         	 
-        	 // alert(image);
+        	 //document.forms.login_form.submit();
+        	 
          var infowindow = new google.maps.InfoWindow();		
            marker = new google.maps.Marker({
              position: new google.maps.LatLng(locations[i].lattitude, locations[i].longitude),
@@ -97,6 +101,7 @@ div {
          
 	  }
   }
+
 (function loadMap() {	 
 		
 	  $.ajax({
@@ -108,7 +113,7 @@ div {
 	    },
 	    complete: function() {
 	      // Schedule the next request when the current one's complete
-	      setTimeout(loadMap, 10000000);
+	      setTimeout(loadMap, 10000);
 	    }
 	  });
 	})();
@@ -121,7 +126,10 @@ div {
 	<table>
 		<tr>
 			<td height="600px"><%@ include file="Menu.jsp"%>
-			</td>
+		
+			
+			<s:hidden id="counter" name="counter" 
+                  />	</td>
 			<td height="600px" width="75%">
 				<table>
 				<tr>

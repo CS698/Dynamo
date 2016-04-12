@@ -63,6 +63,11 @@ public class FetchMapDAOImp implements FetchMapDAO {
 					String org = (String) rs.getString(7) + "";
 					System.out.println("org:" + org);
 					responder.setOrganization(org);
+					
+					
+					int counterInt = (Integer) rs.getInt(15);
+					System.out.println("counterInt:" + counterInt);
+					responder.setCounter(counterInt);
 
 					int resIdInt = ((Integer) rs.getInt(5));
 					String resId = resIdInt + "";
@@ -78,7 +83,7 @@ public class FetchMapDAOImp implements FetchMapDAO {
 					i++;
 					// }
 					
-					if(i==2){
+					if(i==counter){
 					responderDetailList = new ArrayList();
 					i=0;
 					}
