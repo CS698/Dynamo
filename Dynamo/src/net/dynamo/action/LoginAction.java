@@ -49,6 +49,14 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	private String status;
 	private String countryCode;
 	private String zipcode;
+	
+	//**** Fill Tag Id dropdown : RAMYA ****//
+	private List<Integer> tagIds ;
+
+	
+
+
+	//**** Fill Tag Id dropdown : RAMYA ****//
 	//private static final long serialVersionUID = -6765991741441442190L;
 	public List responderDetailsList = new ArrayList();
 
@@ -292,7 +300,9 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 		System.out.println("ADDDDD:member_id:::::::::::::::::::::::" + member_id);
 		logger.debug("addForm method in LoginAction : ");
-
+		
+		DBobjectDAO = new DBobjectDAOImp();
+		tagIds =DBobjectDAO.listTags();
 		return "add";
 
 	}
@@ -361,14 +371,32 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 		System.out.println("member_id::" + member_id);
 		int memberID = DBobjectDAO.add(name, address, imageName, skill, info, zipcode, phone, tagId, member_id);
-		profileViewLst = viewProfile(memberID);
+		//profileViewLst = viewProfile(memberID);
 		System.out.println("memberID::loginaction---" + memberID);
 		logger.debug("add method in LoginAction : " + memberID);
-		if (memberID == 0) {
+		/*if (memberID == 0) {
 			return "registered";
-		} else
-			return "view";
+		} else*/
+		
+		DBobjectDAO = new DBobjectDAOImp();
+		tagIds =DBobjectDAO.listTags();
+		System.out.println("tagIds"+tagIds);
+		
+		clear();
+			return "registered";
 
+	}
+
+	public void clear() {
+		// TODO Auto-generated method stub
+		this.name="";
+		this.address="";
+		this.destPath="";
+		this.phone="";
+		this.zipcode="";
+		this.email="";
+		 this.skill="";
+		this.info="";
 	}
 
 	public String addUser() throws Exception {
@@ -675,5 +703,17 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	public void setTagId(int tagId) {
 		this.tagId = tagId;
 	}
+	//**** Fill Tag Id dropdown : RAMYA ****//
+
+		public List<Integer> getTagIds() {
+		return tagIds;
+		}
+
+		public void setTagIds(List<Integer> tagIds) {
+		this.tagIds = tagIds;
+		}
+
+
+		//**** Fill Tag Id dropdown : RAMYA ****//
 
 }

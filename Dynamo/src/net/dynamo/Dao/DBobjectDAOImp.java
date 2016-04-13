@@ -565,4 +565,61 @@ public class DBobjectDAOImp implements DBobjectDAO {
 
 	}
 
+	/**** Fill Tag Id dropdown : RAMYA ****/
+	@Override
+	public List listTags() {
+
+		List<Integer> tagIds = new ArrayList<Integer>();
+		try {
+		System.out.println("List Dao method");
+		DataSource ds = DBCPDataSourceFactory.getDataSource("mysql");
+		con = ds.getConnection();
+		cs = con.prepareCall("{call get_available_tags()}");
+		boolean haveResult = cs.execute();
+		if (haveResult) {
+		ResultSet rs = cs.getResultSet();
+		while (rs.next()) {
+		tagIds.add((Integer) rs.getInt(1));
+
+		}
+		} else {
+		System.out.println("Nothing returned");
+		}
+
+		} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		System.out.println(e.getMessage());
+		logger.debug("catch block in listTags method in DBobjectDAOImp : " + e.getMessage());
+		} finally {
+		if (cs != null) {
+		try {
+		System.out.println("closing callablestate");
+		cs.close();
+		} catch (SQLException e) {
+		System.err.println("SQLException: " + e.getMessage());
+		logger.debug(
+		"catch block in finally block in listTags method in DBobjectDAOImp : " + e.getMessage());
+		}
+		}
+		if (con != null) {
+		try {
+		System.out.println("closing connection");
+		con.close();
+		} catch (SQLException e) {
+		System.err.println("SQLException: " + e.getMessage());
+		logger.debug(
+		"catch block in finally block in listTags method in DBobjectDAOImp : " + e.getMessage());
+		}
+		}
+		}
+
+
+		System.out.println("TagIds:" + tagIds);
+		return tagIds;
+
+		}
+
+		
+
 }

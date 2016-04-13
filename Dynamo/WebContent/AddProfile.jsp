@@ -19,8 +19,8 @@
 <s:actionerror />
 <s:form action="add" method="post" enctype="multipart/form-data">
 	 <s:textfield name = "member_id" hidden="true" value = "%{member_id}"/>
-    <s:textfield name="name" key="Name" size="20" />
-    <s:textfield name="address" key="Address" size="20" />
+    <s:textfield name="name" label="Name" size="20" />
+    <s:textfield name="address" label="Address" size="20" />
 
     
  <s:select name="skill" key ="Skills"  list="#{'Select':'Select Skill','doctor':'doctor', 'police':'police',
@@ -29,17 +29,17 @@
  
     
    
-    <s:textfield name="info" key="Organization" size="20" />
+    <s:textfield name="info" label="Organization" size="20" />
      
-    <s:textfield name="zipcode" key="zipcode" size="20" />
-    <s:textfield name="role" key="Role" size="20" />
-     <s:textfield name="phone" key="phone" size="20" />
-    <s:textfield name="tagId" key="Tag ID" size="20" />
+    <s:textfield name="zipcode" label="Zipcode" size="20" />
    
+     <s:textfield name="phone" label="Phone" size="20" />
+    <%-- <s:textfield name="tagId" key="Tag ID" size="20" /> --%>
+    <s:select label="Tag ID" headerKey="-1" headerValue="Select Tag Id" list="tagIds" name="tagId" value="-1" /> 
     <s:file name ="userImage" label="Upload Photo"/>
    
    
-    <s:submit method="add" key="add" value ="Add Responder" align="center" />
+    <s:submit method="add" label="ADD" value ="Add Responder" align="center" />
 </s:form>
 </div>
 </td>

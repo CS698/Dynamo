@@ -46,7 +46,7 @@
 			</interceptor-ref>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="view">/Welcome.jsp</result>
-			<result name="registered">/SuccessRegistration.jsp</result>
+			<result name="registered">/AddProfile.jsp</result>
 		</action>
 		
 		
