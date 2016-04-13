@@ -124,10 +124,12 @@ public class FetchMapAction {
 		// String jsonData = new Gson().toJson(responderDetailsList);
 		// System.out.println("jsonData::"+jsonData);
 		
-		System.out.println("counter value************************"+this.counter);
+		
+		counter=this.counter;
+		System.out.println("counter value************************"+counter);
 		FetchMapDAO = new FetchMapDAOImp();
 
-		resDetailsMap = FetchMapDAO.fetchToMap(3);
+		resDetailsMap = FetchMapDAO.fetchToMap(counter);
 		
 		System.out.println("resDetailsMap from dao::" + resDetailsMap);
 		logger.debug(" fetchToMap method in FetchMapAction : " + responderDetailsList );

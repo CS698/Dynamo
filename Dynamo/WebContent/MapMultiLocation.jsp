@@ -16,7 +16,7 @@ div {
 <script src="http://maps.google.com/maps/api/js?sensor=false"
 	type="text/javascript"></script>
 <script type="text/javascript">
-     
+var counter=1;
   function ShowResLocations(Map) {
 	  var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 50,
@@ -59,7 +59,7 @@ div {
     	  
         	// for (i = start; i < end; i++) {
         	 image = 'http://localhost:8080/Dynamo/images/'+locations[i].imageName;
-        	 var counter=locations[i].counter;
+        	 counter=locations[i].counter;
         	 document.getElementById('counter').value = counter;
         	 //alert(counter);
         	// alert(document.getElementById('counter').value);
@@ -108,6 +108,7 @@ div {
 		type : 'GET',
 		dataType: "json",
 	    url: 'fetchToMap', 
+	    data:{counter:counter},
 	    success: function(res) {
 	    	ShowResLocations(res.resDetailsMap);
 	    },
