@@ -8,6 +8,8 @@ private String organization;
 private String lattitude;
 private String longitude;
 private String imageName;
+private String phoneNumber;
+
 private int counter;
 
 
@@ -52,5 +54,11 @@ public String getResName() {
 }
 public void setResName(String resName) {
 	this.resName = resName;
+}
+public String getPhoneNumber() {
+	return phoneNumber;
+}
+public void setPhoneNumber(String phoneNumber) {
+	this.phoneNumber = phoneNumber;
 }
 }

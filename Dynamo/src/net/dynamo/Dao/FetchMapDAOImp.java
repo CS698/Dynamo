@@ -65,6 +65,11 @@ public class FetchMapDAOImp implements FetchMapDAO {
 					responder.setOrganization(org);
 					
 					
+					String phoneNumber = (String) rs.getString(14) + "";
+					System.out.println("phoneNumber:" + phoneNumber);
+					responder.setPhoneNumber(phoneNumber);
+					
+					
 					int counterInt = (Integer) rs.getInt(15);
 					System.out.println("counterInt:" + counterInt);
 					responder.setCounter(counterInt);

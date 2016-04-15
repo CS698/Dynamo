@@ -21,50 +21,32 @@ var counter=1;
 	  var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 50,
           center: new google.maps.LatLng(40.277625, -74.003671),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.SATELLITE
         });
 
-     var pathcolors = ['#3366ff','#FF0000','#ffff00','#cc0099','#009933','#663300','#00ffff','#666699','#000000'];
+     var pathcolors = ['#3366ff','#FF0000','#FF00FF','#cc0099','#009933','#663300','#00ffff','#666699','#000000'];
 	 var j=0;
       var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-		//var start=0;
-		//var end =0;
 	  for (var key in Map) {
-		   // alert(key + ': ' + Map[key]);
 		    
 		    var locations=Map[key];
-		   // alert(locations[0].resName);
-		   // alert(locations.length);
-		  //  end = end + locations.length;
+		   
 		    if(key==100){
 		    	 image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';	
 		    }
 		    else image='http://localhost:8080/Dynamo/images/s1044534.jpg';
-		    /* alert(listI);
-		    alert(locations[0].resName);
-		
-        	alert(locations.value);
-        	var list=locations[0];
-        	alert(list[0].resName); */
-        	
-     //////
-     //
+		    
     var marker, i;
    
-	//alert(locations[0].lattitude)
 	
 	var arr = [];
 	 	
         for (i = 0; i < locations.length; i++) {  
     	  
-        	// for (i = start; i < end; i++) {
         	 image = 'http://localhost:8080/Dynamo/images/'+locations[i].imageName;
         	 counter=locations[i].counter;
         	 document.getElementById('counter').value = counter;
-        	 //alert(counter);
-        	// alert(document.getElementById('counter').value);
         	 
-        	 //document.forms.login_form.submit();
         	 
          var infowindow = new google.maps.InfoWindow();		
            marker = new google.maps.Marker({
@@ -79,7 +61,7 @@ var counter=1;
 	        return function() {
 	        	var list=Map[key];
 	          infowindow.setContent('Name : ' +list[i].resName + '</br>' +'Organization : ' 
-	        		  +list[i].organization + '</br>'+ 'Phone no :'+ ' ' +
+	        		  +list[i].organization + '</br>'+ 'Phone no :'+ list[i].phoneNumber +
 	        		  '</br>'+'<img src="http://localhost:8080/Dynamo/images/' + list[i].imageName + '"/>');
 	          infowindow.open(map, marker);
 	        }
@@ -87,7 +69,6 @@ var counter=1;
     
         
          }
-        	// start=i+1;
         	 
          
          
