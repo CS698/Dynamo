@@ -24,8 +24,8 @@ var counter=1;
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
-     
-
+     var pathcolors = ['#3366ff','#FF0000','#ffff00','#cc0099','#009933','#663300','#00ffff','#666699','#000000'];
+	 var j=0;
       var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
 		//var start=0;
 		//var end =0;
@@ -93,12 +93,16 @@ var counter=1;
          
          var poly = new google.maps.Polyline({
              path: arr,
-             strokeColor: '#FF0000',
+             strokeColor: pathcolors[j],
              strokeOpacity: 1.0,
              strokeWeight: 3,
              map: map    
            });
          
+         if(j<pathcolors.length)
+        	j+=1; 
+         else
+        	 j=0;
 	  }
   }
 
