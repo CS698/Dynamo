@@ -54,7 +54,7 @@ li a:hover {
 		<li><s:url value="addUAV" var="url"></s:url>
 		 <s:a href="%{url}"> UAV Data</s:a>
 		</li>
-		
+		<li><s:a href="Login.jsp">Log Out</s:a></li>
 		
 	
 		

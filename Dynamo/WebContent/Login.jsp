@@ -7,13 +7,16 @@
 <%@ include file="/css/style.css"%>
 <%@ include file="header.jsp" %>
 <body>
-<div align="center">
+<br/>
+<div align="center" class="outerdiv" style="width:50%;margin:0 auto;">
 <h2>Please enter user name and password:</h2>
 <s:actionerror />
 <s:form action="login" method="post">
-    <s:textfield name="username" size="20" />
-    <s:password name="password"  size="20" />
-    <s:submit method="execute" value="login" align="center" />
+    <s:textfield name="username" label="User Name" size="20" />
+    <span></span>
+    <s:password name="password" label="Password"  size="20" />
+    <span></span>
+    <s:submit cssClass="button" method="execute" value="login" align="center" />
 </s:form>
 <s:url value="addForm" var="url">
    <s:param name="member_id" value="%{member_id}" /> 

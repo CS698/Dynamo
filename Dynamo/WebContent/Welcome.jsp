@@ -19,8 +19,8 @@
 <td height="600px">
 <%@ include file="Menu.jsp" %>
 </td>
-<td height="600px" width="75%">
-<div align="center">
+<td height="600px" width="100%">
+<div align="center" class="outerdiv" style="margin:0 auto;width:90%;height:inherit;">
 <h2 align="center"> PROFILE</h2>
 <s:iterator value="profileViewLst">  
   

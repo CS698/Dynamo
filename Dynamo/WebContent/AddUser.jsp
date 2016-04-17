@@ -13,10 +13,10 @@
 <td height="600px">
 <%@ include file="Menu.jsp" %>
 </td>
-<td height="600px" width="75%">
-<div align="center">
+<td height="600px" width="100%">
+<div align="center" class="outerdiv" style="margin:0 auto;width:90%;height:inherit;">
 <s:actionerror />
-<s:form action="addUser" method="post" enctype="multipart/form-data">
+<s:form action="addUser" method="post" enctype="multipart/form-data" cssStyle="margin-top:100px;">
 
 	 <s:textfield name = "member_id" hidden="true" value = "%{member_id}"/>
     <s:textfield name="name" key="Name" size="20" />
@@ -34,7 +34,7 @@
     <s:file name ="userImage" label="Upload Photo"/>
    
    
-    <s:submit method="addUser" key="addUser" value ="AddUser" align="center" />
+    <s:submit method="addUser"  cssClass="button" key="addUser" value ="AddUser" align="center" />
 
 </s:form>
 </div>

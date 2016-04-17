@@ -44,7 +44,7 @@ function initialize() {
 
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
       return function() {
-        infowindow.setContent('Name : <b>' +readerlocations[i][0] + '</b>');
+        infowindow.setContent('<b>' +readerlocations[i][0] + '</b>');
         infowindow.open(map, marker);
       }
     })(marker, i));
@@ -63,7 +63,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 			</td>
 			<td height="600px" width="75%">
 
-				<div id="googleMap" style="width: 1600px; height: 600px;"></div>
+				<div  class="outerdiv" id="googleMap" style="width: 1600px; height: 600px;"></div>
 			</td>
 		</tr>
 	</table>
