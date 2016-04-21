@@ -16,25 +16,25 @@ div {
 <script src="http://maps.google.com/maps/api/js?sensor=false"
 	type="text/javascript"></script>
 <script type="text/javascript">
-var counter=1;
+var counter=0;
   function ShowResLocations(Map) {
 	  var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 50,
-          center: new google.maps.LatLng(40.277625, -74.003671),
+          center: new google.maps.LatLng(40.277586, -74.004153),
           mapTypeId: google.maps.MapTypeId.SATELLITE
         });
 
-     var pathcolors = ['#3366ff','#FF0000','#FF00FF','#cc0099','#009933','#663300','#00ffff','#666699','#000000'];
+     var pathcolors = ['#3366ff','#FFFF00','#FF00FF','#cc0099','#009933','#663300','#00FFFF','#666699','#000000'];
 	 var j=0;
       var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
 	  for (var key in Map) {
 		    
 		    var locations=Map[key];
 		   
-		    if(key==100){
+		    /* if(key==100){
 		    	 image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';	
 		    }
-		    else image='http://localhost:8080/Dynamo/images/s1044534.jpg';
+		    else image='http://10.71.24.88:8080/Dynamo/images/s1044534.jpg'; */
 		    
     var marker, i;
    
@@ -43,8 +43,15 @@ var counter=1;
 	 	
         for (i = 0; i < locations.length; i++) {  
     	  
-        	 image = 'http://localhost:8080/Dynamo/images/'+locations[i].imageName;
-        	 counter=locations[i].counter;
+        	//if(counter==1 || counter==3){
+        	 
+        		image = '/Dynamo/images/'+locations[i].imageName;
+        	
+        	//}
+        	/* else{
+        		 image = 'http://10.71.24.88:8080/Dynamo/images/beachflag';
+        	} */
+        	counter=locations[i].counter;
         	 document.getElementById('counter').value = counter;
         	 
         	 
@@ -62,7 +69,7 @@ var counter=1;
 	        	var list=Map[key];
 	          infowindow.setContent('Name : ' +list[i].resName + '</br>' +'Organization : ' 
 	        		  +list[i].organization + '</br>'+ 'Phone no :'+ list[i].phoneNumber +
-	        		  '</br>'+'<img src="http://localhost:8080/Dynamo/images/' + list[i].imageName + '"/>');
+	        		  '</br>'+'<img src="/Dynamo/images/' + list[i].imageName + '"/>');
 	          infowindow.open(map, marker);
 	        }
 	      })(marker, i,key));

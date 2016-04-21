@@ -59,7 +59,7 @@
 		</action>
 		
 
-<action name="addUAV" class="net.dynamo.action.LoginAction"
+<action name="addUAV" class="net.dynamo.action.UAVDataMapAction"
 			method="addUAV">
 			<result name="addUAV" >/UAV.jsp</result>
 
@@ -71,6 +71,15 @@
 					
 					
 			<result name="fetchToMap" type="json">/MapMultiLocation.jsp</result>
+			
+
+		</action>
+		
+		<action name="uavToMap" class="net.dynamo.action.UAVDataMapAction"
+			method="uavToMap">
+					
+					
+			<result name="uavToMap" type="json">/UAV.jsp</result>
 			
 
 		</action>
