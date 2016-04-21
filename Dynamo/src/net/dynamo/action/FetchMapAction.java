@@ -63,4 +63,11 @@ public class FetchMapAction {
 		return "fetchToMap";
 	}
 	
+	
+	
+	/***************** To navigate to the MapMultiLocation.jsp ************************/
+	public String addMap() throws Exception {
+		return "addMap";
+	}
+	
 }

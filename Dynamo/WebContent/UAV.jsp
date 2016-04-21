@@ -19,7 +19,7 @@ div {
 var counter=1;
   function ShowResLocations(Map) {
 	  var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 50,
+          zoom: 200,
           center: new google.maps.LatLng(40.277586, -74.004153),
           mapTypeId: google.maps.MapTypeId.SATELLITE
         });
@@ -45,8 +45,8 @@ var counter=1;
     	  
         	//if(counter==1 || counter==3){
         	 
-        		image = '/Dynamo/images/'+locations[i].imageName;
-        	
+        		//image = '/Dynamo/images/'+locations[i].imageName;
+        		 image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
         	//}
         	/* else{
         		 image = 'http://10.71.24.88:8080/Dynamo/images/beachflag';

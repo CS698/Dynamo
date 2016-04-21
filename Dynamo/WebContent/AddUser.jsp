@@ -19,19 +19,16 @@
 <s:form action="addUser" method="post" enctype="multipart/form-data" cssStyle="margin-top:100px;">
 
 	 <s:textfield name = "member_id" hidden="true" value = "%{member_id}"/>
-    <s:textfield name="name" key="Name" size="20" />
-    <s:textfield name="address" key="Address" size="20" />
+    <s:textfield name="name" label="Name" size="20" />
+    <s:textfield name="address" label="Address" size="20" />
 
-    <s:textfield name="skill" key="skill" size="20" />
+    <s:textfield name="skillt" label="Login Name" size="20" />
    
-    <s:textfield name="info" key="info" size="20" />
+    <s:password name="passwordm" label="Password" size="20" />
      
-    <s:textfield name="zipcode" key="zipcode" size="20" />
-    <s:textfield name="role" key="Role" size="20" />
-     <s:textfield name="phone" key="phone" size="20" />
+    <s:textfield name="zipcode" label="zipcode" size="20" />
+     <s:textfield name="phone" label="phone" size="20" />
     
-   
-    <s:file name ="userImage" label="Upload Photo"/>
    
    
     <s:submit method="addUser"  cssClass="button" key="addUser" value ="AddUser" align="center" />

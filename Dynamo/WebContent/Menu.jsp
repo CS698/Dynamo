@@ -49,7 +49,11 @@ li a:hover {
 		</li>
 		<li><s:a href="ViewRFIDReader.jsp">View RFID Reader</s:a></li>
 		<li><s:a href="SearchResponders.jsp">Search Responder</s:a></li>
-		<li><s:a href="MapMultiLocation.jsp">View Map</s:a></li>
+		
+		<li><s:url value="addMap" var="url"></s:url>
+		 <s:a href="%{url}">View Map</s:a>
+		</li>
+		
 		<li><s:a href="MapMultiLocation.jsp">Find Path</s:a></li>
 		<li><s:url value="addUAV" var="url"></s:url>
 		 <s:a href="%{url}"> UAV Data</s:a>

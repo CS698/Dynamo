@@ -4,11 +4,11 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-<constant name="struts.multipart.saveDir" value="/Dynamo/images" />
+	<constant name="struts.multipart.saveDir" value="/Dynamo/images" />
 
 	<package name="default" namespace="/" extends="json-default">
 
-		
+
 
 		<action name="login" class="net.dynamo.action.LoginAction"
 			method="execute">
@@ -27,7 +27,7 @@
 
 
 		</action>
-		
+
 		<action name="addFormUser" class="net.dynamo.action.LoginAction"
 			method="addFormUser">
 			<result name="addUser">/AddUser.jsp</result>
@@ -48,42 +48,49 @@
 			<result name="view">/Welcome.jsp</result>
 			<result name="registered">/AddProfile.jsp</result>
 		</action>
-		
-		
+
+
 		<action name="addUser" class="net.dynamo.action.LoginAction"
 			method="addUser">
 
-			
+
 			<result name="view">/Welcome.jsp</result>
-			<result name="registered">/SuccessRegistration.jsp</result>
+			<result name="registered">/AddUser.jsp</result>
 		</action>
-		
 
-<action name="addUAV" class="net.dynamo.action.UAVDataMapAction"
+
+		<action name="addUAV" class="net.dynamo.action.UAVDataMapAction"
 			method="addUAV">
-			<result name="addUAV" >/UAV.jsp</result>
+			<result name="addUAV">/UAV.jsp</result>
 
 
 		</action>
 		
-				<action name="fetchToMap" class="net.dynamo.action.FetchMapAction"
+		<action name="addMap" class="net.dynamo.action.FetchMapAction"
+			method="addMap">
+			<result name="addMap">/MapMultiLocation.jsp</result>
+
+
+		</action>
+
+		<action name="fetchToMap" class="net.dynamo.action.FetchMapAction"
 			method="fetchToMap">
-					
-					
+
+
 			<result name="fetchToMap" type="json">/MapMultiLocation.jsp</result>
-			
+
 
 		</action>
-		
+
 		<action name="uavToMap" class="net.dynamo.action.UAVDataMapAction"
 			method="uavToMap">
-					
-					
+
+
 			<result name="uavToMap" type="json">/UAV.jsp</result>
-			
+
 
 		</action>
-		
+
 
 	</package>
 </struts>

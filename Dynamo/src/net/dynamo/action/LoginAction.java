@@ -313,7 +313,8 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	public String addFormUser() throws Exception {
 
 		System.out.println("ADDDDD:member_id:::::::::::::::::::::::" + member_id);
-		
+		this.username=" ";
+		this.password=" ";
 		logger.debug("addFormUser method in LoginAction : ");
 		return "addUser";
 
@@ -424,19 +425,9 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		String a = (String) session.getAttribute("memberIdSession");
 		System.out.println("aaaaaaaaaaaaaa:" + a);
 
-		/*
-		 * String contextPath = servletRequest.getContextPath();
-		 * 
-		 * System.out.println("path::"+contextPath); destPath =
-		 * contextPath+"/images/"; System.out.println("Src File name: " +
-		 * userImage); System.out.println("Dst File name: " +
-		 * userImageFileName); System.out.println(" destPath: " + destPath);
-		 * 
-		 * File destFile = new File(destPath, userImageFileName);
-		 * FileUtils.copyFile(userImage, destFile);
-		 */
+		
 
-		contextPath = servletRequest.getContextPath() + "/images";
+		/*contextPath = servletRequest.getContextPath() + "/images";
 		System.out.println("contextPath::::::::" + contextPath);
 
 		// destPath=contextPath+"/images/";
@@ -457,8 +448,9 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		if (memberID == 0) {
 			return "registered";
 		} else
-			return "view";
-
+			return "view";*/
+		 clear();
+		return "registered";
 	}
 
 	public String getSkill() {

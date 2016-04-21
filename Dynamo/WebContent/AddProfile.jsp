@@ -23,7 +23,7 @@
     <s:textfield name="address" label="Address" size="20" />
 
     
- <s:select name="skill" key ="Skills"  list="#{'Select':'Select Skill','doctor':'doctor', 'police':'police',
+ <s:select name="skill" key ="Skills"  list="#{'Select':'Select Skill','Security guards':'Security guards','EMS':'EMS','Life guards':'Life guards','fire fighters':'fire fighters','doctor':'doctor', 'police':'police',
 
                     'comander':'comander'}"/>
  
