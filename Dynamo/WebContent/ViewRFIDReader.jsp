@@ -25,8 +25,11 @@ function initialize() {
   };
   var readerlocations = [
                    ['Reader 1', 40.2776, -74.00355],
-                   ['Reader 2', 40.27729, -74.003647],
-                   ['Reader 3', 40.27751, -74.00395]
+                   ['Reader 2', 40.27729, -74.00365],
+                   ['Reader 3', 40.27751, -74.00395],
+                   ['Reader 4', 40.27754, -74.00408],
+                   ['Reader 5', 40.27724, -74.00418],
+                   ['Reader 6', 40.27746, -74.00445]
                  ];
   image = 'http://localhost:8080/Dynamo/images/RFIDReader.jpg';
   var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
