@@ -45,8 +45,8 @@ var counter=1;
     	  
         	//if(counter==1 || counter==3){
         	 
-        		//image = '/Dynamo/images/'+locations[i].imageName;
-        		 image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+        	image = '/Dynamo/images/'+locations[i].imageName;
+        		// image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
         	//}
         	/* else{
         		 image = 'http://10.71.24.88:8080/Dynamo/images/beachflag';
@@ -59,7 +59,7 @@ var counter=1;
            marker = new google.maps.Marker({
              position: new google.maps.LatLng(locations[i].lattitude, locations[i].longitude),
              map: map,
-             icon : image
+            icon : image
            });
            arr.push(marker.getPosition());
            

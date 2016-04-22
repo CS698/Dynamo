@@ -24,7 +24,7 @@ var counter=0;
           mapTypeId: google.maps.MapTypeId.SATELLITE
         });
 
-     var pathcolors = ['#3366ff','#FFFF00','#FF00FF','#cc0099','#009933','#663300','#00FFFF','#666699','#000000'];
+     var pathcolors = ['#3366ff','#FFFF00','#FF00FF','#cc0099','#009933','#663300','#00FFFF','#666699','#000000','#e7170d'];
 	 var j=0;
       var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
 	  for (var key in Map) {
