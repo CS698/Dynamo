@@ -20,11 +20,11 @@
 <%@ include file="Menu.jsp" %>
 </td>
 <td height="600px" width="100%">
-<div align="center" class="outerdiv" style="margin:0 auto;width:90%;height:inherit;">
-<h2 align="center"> PROFILE</h2>
+<div align="left" class="outerdiv" style="margin:20px auto;width:90%;height:inherit; padding: 10px;">
+<h2 align="left"> PROFILE</h2>
 <s:iterator value="profileViewLst">  
   
-Name :<s:property value="name"/><br/>  <br/> 
+Name :<s:property value="name" /><br/>  <br/> 
  
 Phone Number :<s:property value="phone"/><br/>  <br/> 
 Address :<s:property value="address"/><br/> <br/> 
