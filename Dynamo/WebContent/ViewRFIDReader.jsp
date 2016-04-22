@@ -19,14 +19,14 @@ div {
 
 function initialize() {
   var mapProp = {
-    center:new google.maps.LatLng(40.277625, -74.003671),
+    center:new google.maps.LatLng(40.27751,-74.00395),
     zoom:30,
     mapTypeId:google.maps.MapTypeId.SATELLITE
   };
   var readerlocations = [
-                   ['Reader 1', 40.277673, -74.003730],
-                   ['Reader 2', 40.277623, -74.003647],
-                   ['Reader 3', 40.277599, -74.003730]
+                   ['Reader 1', 40.2776, -74.00355],
+                   ['Reader 2', 40.27729, -74.003647],
+                   ['Reader 3', 40.27751, -74.00395]
                  ];
   image = 'http://localhost:8080/Dynamo/images/RFIDReader.jpg';
   var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
