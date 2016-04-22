@@ -315,6 +315,9 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		System.out.println("ADDDDD:member_id:::::::::::::::::::::::" + member_id);
 		this.username=" ";
 		this.password=" ";
+		session = servletRequest.getSession();
+		String a = (String) session.getAttribute("memberIdSession");
+		System.out.println("aaaaaaaaaaaaaa:" + a);
 		logger.debug("addFormUser method in LoginAction : ");
 		return "addUser";
 
@@ -707,5 +710,18 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 
 		//**** Fill Tag Id dropdown : RAMYA ****//
+		
+		
+		/*public void validate(){
+			
+			 if (this.username == null || this.username.trim().equals(""))
+		      {
+		         addFieldError("username","User Name is required");
+		      }
+			 if (this.password == null || this.password.trim().equals(""))
+		      {
+		         addFieldError("password","Password is Required");
+		      }
+		}*/
 
 }
