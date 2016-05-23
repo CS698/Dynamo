@@ -106,7 +106,7 @@ var counter=0;
 	    },
 	    complete: function() {
 	      // Schedule the next request when the current one's complete
-	      setTimeout(loadMap, 10000);
+	      setTimeout(loadMap, 25000);
 	    }
 	  });
 	})();
