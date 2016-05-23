@@ -31,7 +31,7 @@ function initialize() {
                    ['Reader 5', 40.27724, -74.00418],
                    ['Reader 6', 40.27746, -74.00445]
                  ];
-  image = 'http://localhost:8080/Dynamo/images/RFIDReader.jpg';
+  image = '/Dynamo/images/RFIDReader.jpg';
   var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
   
   var infowindow = new google.maps.InfoWindow();

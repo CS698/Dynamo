@@ -345,26 +345,15 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		System.out.println("info::::::::" + info);
 		session = servletRequest.getSession();
 
-		/*
-		 * String contextPath = servletRequest.getContextPath();
-		 * 
-		 * System.out.println("path::"+contextPath); destPath =
-		 * contextPath+"/images/"; System.out.println("Src File name: " +
-		 * userImage); System.out.println("Dst File name: " +
-		 * userImageFileName); System.out.println(" destPath: " + destPath);
-		 * 
-		 * File destFile = new File(destPath, userImageFileName);
-		 * FileUtils.copyFile(userImage, destFile);
-		 */
+		
 
 		contextPath = servletRequest.getContextPath() + "/images";
 		System.out.println("contextPath::::::::" + contextPath);
 
-		// destPath=contextPath+"/images/";
-		// working
+		
 		destPath = servletRequest.getServletContext().getRealPath("/images");
 
-		// working
+	
 		System.out.println("Server path:" + destPath);
 		File fileToCreate = new File(destPath, this.userImageFileName);
 

@@ -127,7 +127,7 @@ var counter=1;
 				<table>
 				<tr>
 				<td><div id="map" style="width: 800px; height: 600px;"></div></td>
-				<td><embed  name="mediaplayer1" ShowStatusBar="true" EnableContextMenu="false" autostart="true" width="800" height="600" loop="false" src="<%=request.getContextPath()%>/videos/2016-03-24 00.00.00 Drone Video.mp4" /></td>
+				<td><embed  name="mediaplayer1" ShowStatusBar="true" EnableContextMenu="false" autostart="true" width="800" height="600" loop="true" src="<%=request.getContextPath()%>/videos/2016-03-24 00.00.00 Drone Video.mp4" /></td>
 				</tr>
 				</table>
 				
